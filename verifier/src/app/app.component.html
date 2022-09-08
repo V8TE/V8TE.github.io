@@ -1,0 +1,9 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <h1>{{election.name}}</h1>
+  <p>Du {{election.start}} au {{election.end}}</p>
+  <p>{{election.question}} {{election.answers.join("/")}}</p>
+  <p class="proof">Preuve: 0x{{electionSha}} - <a href="">Vérifier sur la blockchain</a></p>
+</div>
+
+<router-outlet></router-outlet>

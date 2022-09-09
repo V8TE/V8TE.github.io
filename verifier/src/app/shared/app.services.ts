@@ -12,7 +12,8 @@ export class ApiService {
   //resultsURL: string;
   httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "application/json; charset=UTF-8",
+        'Accept': 'text/html',
+        "Content-Type": "application/json; charset=UTF-8",
     }),
   };
   httpOptionstmp: any;
@@ -21,21 +22,27 @@ export class ApiService {
     private httpClient: HttpClient,
   ) {}
 
-  public getTxs() {
+  public getTxs(id: string) {
     return this.httpClient.get(
-        `${environment.settings.api}/elections/`
+        `${environment.settings.api}/elections/${id}/txs`
       );
   }
 
-  public getVotes() {
+  public getVotes(id: string) {
     return this.httpClient.get(
-        `${environment.settings.api}/elections/`
+        `${environment.settings.api}/elections/${id}/result`
       );
   }
 
-  public getVoters() {
+  public getVoters(id: string) {
     return this.httpClient.get(
-        `${environment.settings.api}/elections/`
+        `${environment.settings.api}/elections/${id}/votersanon`
+      );
+  }
+
+  public getTally(id: string) {
+    return this.httpClient.get(
+        `${environment.settings.api}/elections/${id}/tally`
       );
   }
 

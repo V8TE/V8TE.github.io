@@ -2,7 +2,9 @@
 <div class="toolbar" role="banner">
   <h1>{{election.name}}</h1>
   <p>Du {{election.start}} au {{election.end}}</p>
-  <p>{{election.question}} {{election.answers.join("/")}}</p>
+  <div class="questions" *ngFor="let question of questions" style="display: flex; flex-direction: row">
+    <p style="margin-right: 20px;">{{question}}:</p><p>Oui - Non</p>
+  </div>
   <p class="proof">Preuve: 0x{{electionSha}} - <a href="">Vérifier sur la blockchain</a></p>
 </div>
 

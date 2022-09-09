@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SHA256 } from "crypto-js"
 import { ApiService } from "src/app/shared/app.services";
+import { Election } from './Models/Election';
 
 
 @Component({
@@ -13,47 +14,68 @@ export class AppComponent {
   electionSha!: any;
   votes!: String;
   voters!: String
-  election = {
-    "name": "", 
-    "start":"", 
-    "end":"", 
-    "question":"", 
-    "answers": []}
+  // election = {
+  //   "name": "", 
+  //   "start":"", 
+  //   "end":"", 
+  //   "question":"", 
+  //   "answers": []}
+  questions: Array<String> = []
+  election: Election = new Election("", "", "", [], "")
   txs!: Object
   timer = {}
-  API_URL = `https://c.v8te.com`
+  API_URL = `http:0.0.0.0:8080`
 
   constructor(
     private apiService: ApiService,
-  ) {}
+  ) {
+  }
 
 // API
 
 fetchDatas() {
-  this.fetchTxs()
-  this.fetchElection()
-  this.fetchVotes()
-  this.fetchVoters()
+  let id = "a4711754-261f-4b51-9ab8-7b3aa4b00e5f"
+  this.fetchTxs(id)
+  this.fetchElection(id)
+  this.fetchVotes(id)
+  this.fetchVoters(id)
 }
-async fetchTxs() {
-  this.txs = await this.apiService.getTxs()
-  const url = `${this.API_URL}/pub/txs`
-  this.txs = await (await fetch(url)).json()
+async fetchTxs(id: string) {
+  this.txs = await this.apiService.getTxs(id).subscribe((res: any) => {
+    console.log("res Txs");
+    console.log(res);
+  });
 }
-async fetchVotes() {
-  await this.apiService.getVotes()
-  const url = `${this.API_URL}/pub/votes`
-  this.votes = await (await fetch(url)).json()
+async fetchVotes(id: string) {
+  await this.apiService.getVotes(id).subscribe((res: any) => {
+    console.log("res Votes");
+    console.log(res);
+  });
 }
-async fetchVoters() {
-  await this.apiService.getVoters()
-  const url = `${this.API_URL}/pub/voters`
-  this.voters = await (await fetch(url)).json()
+async fetchVoters(id: string) {
+  await this.apiService.getVoters(id).subscribe((res: any) => {
+    console.log("res Voters");
+    console.log(res);
+  });
 }
-async fetchElection() {
-  await this.apiService.getElection("tmp")
-  const url = `${this.API_URL}/pub/election`
-  this.election = await (await fetch(url)).json()
+async fetchElection(id: string) {
+  this.apiService.getElection(id).subscribe((res: any) => {
+    console.log("res Elec");
+    console.log(res);
+    this.election.name = res.name;
+    this.election = res
+    let questionsLength = res.questions.length;
+    for (let i = 1; i < questionsLength ; i++) {
+      this.questions.push(this.election.questions[i].question);
+    }
+  });
+}
+
+async fetchTally(id: string) {
+  this.apiService.getTally(id).subscribe((res: any) => {
+    console.log("res Tally");
+    console.log(res);
+  });
 }
 
 // END API
@@ -73,5 +95,11 @@ async fetchElection() {
 
   sha(election: string) {
     this.electionSha = SHA256(election).toString(CryptoJS.enc.Hex)
+  }
+
+  ngOnInit() {
+    console.log(this.election);
+    this.fetchDatas()
+    // this.fetchElection("a4711754-261f-4b51-9ab8-7b3aa4b00e5f")
   }
 }

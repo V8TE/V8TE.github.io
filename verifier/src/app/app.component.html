@@ -1,11 +1,12 @@
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
+<div class="toolbar" role="banner" *ngIf="pollId.length > 0">
   <h1>{{election.name}}</h1>
   <p>Du {{election.start}} au {{election.end}}</p>
   <div class="questions" *ngFor="let question of questions" style="display: flex; flex-direction: row">
     <p style="margin-right: 20px;">{{question}}:</p><p>Oui - Non</p>
   </div>
-  <p class="proof">Preuve: 0x{{electionSha}} - <a href="">Vérifier sur la blockchain</a></p>
+  <p class="proof">Preuve: {{txPollId}} - <a href="https://goerli.etherscan.io/tx/{{txPollId}}">Vérifier sur la blockchain</a></p>
+  <!-- <p class="proof">Preuve: 0x{{electionSha}} - <a href="https://goerli.etherscan.io/tx/{{txPollId}}">Vérifier sur la blockchain</a></p> -->
 </div>
 
 <router-outlet></router-outlet>

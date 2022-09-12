@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SHA256 } from "crypto-js"
+import { Router } from '@angular/router';
+import { SHA256, enc } from "crypto-js"
 import { ApiService } from "src/app/shared/app.services";
 import { Election } from './Models/Election';
 
@@ -12,56 +13,63 @@ import { Election } from './Models/Election';
 export class AppComponent {
   title = 'verifier';
   electionSha!: any;
-  votes!: String;
-  voters!: String
+  votes: String | undefined;
+  voters!: String;
+  txPollId!: string;
   // election = {
   //   "name": "", 
   //   "start":"", 
   //   "end":"", 
   //   "question":"", 
   //   "answers": []}
-  questions: Array<String> = []
-  election: Election = new Election("", "", "", [], "")
-  txs!: Object
-  timer = {}
-  API_URL = `http:0.0.0.0:8080`
+  questions: Array<String> = [];
+  election: Election = new Election("", "", "", [], "");
+  txs!: Object;
+  timer = {};
+  API_URL = `http:0.0.0.0:8080`;
+  voterSha: string | undefined;
+  pollId!: string;
 
   constructor(
-    private apiService: ApiService,
+    private router: Router,
+    private apiService: ApiService
   ) {
   }
 
 // API
 
-fetchDatas() {
-  let id = "a4711754-261f-4b51-9ab8-7b3aa4b00e5f"
-  this.fetchTxs(id)
-  this.fetchElection(id)
-  this.fetchVotes(id)
-  this.fetchVoters(id)
+getDatas() {
+  
+  //let id = "78faf2c3-2ca5-4edb-b1a4-9c00678f8224"
+  // let id = "a4711754-261f-4b51-9ab8-7b3aa4b00e5f"
+  this.fetchElection(this.pollId)
+  this.fetchVotes(this.pollId)
+  this.fetchVoters(this.pollId)
+  this.fetchTally(this.pollId)
+  this.fetchDatas(this.pollId)
 }
-async fetchTxs(id: string) {
-  this.txs = await this.apiService.getTxs(id).subscribe((res: any) => {
-    console.log("res Txs");
-    console.log(res);
-  });
-}
+
 async fetchVotes(id: string) {
   await this.apiService.getVotes(id).subscribe((res: any) => {
-    console.log("res Votes");
-    console.log(res);
   });
 }
+
+async fetchDatas(id: string) {
+  await this.apiService.getDatas(id).subscribe((res: any) => {
+    console.log(res);
+    this.txPollId = res.txs.poll
+    
+  });
+}
+
 async fetchVoters(id: string) {
-  await this.apiService.getVoters(id).subscribe((res: any) => {
-    console.log("res Voters");
-    console.log(res);
+  await this.apiService.getVoters(id).subscribe((res: string) => {
+    this.voterSha = this.sha(res)
   });
 }
+
 async fetchElection(id: string) {
   this.apiService.getElection(id).subscribe((res: any) => {
-    console.log("res Elec");
-    console.log(res);
     this.election.name = res.name;
     this.election = res
     let questionsLength = res.questions.length;
@@ -73,33 +81,27 @@ async fetchElection(id: string) {
 
 async fetchTally(id: string) {
   this.apiService.getTally(id).subscribe((res: any) => {
-    console.log("res Tally");
-    console.log(res);
   });
 }
 
 // END API
 
-  partialSha(n: number): string {
-    //if (Array.isArray(this.votes))
-      //return this.sha(JSON.stringify(this.votes.slice(0, n + 1)))
-    //else return ""
-    return ""
-  }
   tx(hash: string) {
     //return "https://goerli.etherscan.io/tx/" + this.txs[hash]
   }
+
   formatDate(v: string) {
     return new Date(v).toLocaleString()
   }
 
-  sha(election: string) {
-    this.electionSha = SHA256(election).toString(CryptoJS.enc.Hex)
+  sha(v: any) {
+    let s = JSON.stringify(v)
+    return SHA256(s).toString(enc.Hex)
   }
 
   ngOnInit() {
-    console.log(this.election);
-    this.fetchDatas()
-    // this.fetchElection("a4711754-261f-4b51-9ab8-7b3aa4b00e5f")
+    this.pollId = this.router.url.split('/')[1];
+    if (this.pollId.length > 0)
+    this.getDatas()
   }
 }

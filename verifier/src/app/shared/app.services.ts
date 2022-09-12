@@ -22,11 +22,6 @@ export class ApiService {
     private httpClient: HttpClient,
   ) {}
 
-  public getTxs(id: string) {
-    return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/txs`
-      );
-  }
 
   public getVotes(id: string) {
     return this.httpClient.get(
@@ -35,7 +30,7 @@ export class ApiService {
   }
 
   public getVoters(id: string) {
-    return this.httpClient.get(
+    return this.httpClient.get<string>(
         `${environment.settings.api}/elections/${id}/votersanon`
       );
   }
@@ -49,6 +44,12 @@ export class ApiService {
   public getElection(id: string) {
     return this.httpClient.get(
         `${environment.settings.api}/elections/${id}/params`
+      );
+  }
+
+  public getDatas(id: string) {
+    return this.httpClient.get(
+        `${environment.settings.api}/elections/${id}/datas`
       );
   }
 }

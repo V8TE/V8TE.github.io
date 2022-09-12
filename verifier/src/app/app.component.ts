@@ -16,6 +16,9 @@ export class AppComponent {
   votes: String | undefined;
   voters!: String;
   txPollId!: string;
+  txVotersId!: string;
+  txVotesId!: string;
+  txTallyId!: string;
   // election = {
   //   "name": "", 
   //   "start":"", 
@@ -28,6 +31,7 @@ export class AppComponent {
   timer = {};
   API_URL = `http:0.0.0.0:8080`;
   voterSha: string | undefined;
+  tallySha: string | undefined;
   pollId!: string;
 
   constructor(
@@ -39,9 +43,6 @@ export class AppComponent {
 // API
 
 getDatas() {
-  
-  //let id = "78faf2c3-2ca5-4edb-b1a4-9c00678f8224"
-  // let id = "a4711754-261f-4b51-9ab8-7b3aa4b00e5f"
   this.fetchElection(this.pollId)
   this.fetchVotes(this.pollId)
   this.fetchVoters(this.pollId)
@@ -58,13 +59,18 @@ async fetchDatas(id: string) {
   await this.apiService.getDatas(id).subscribe((res: any) => {
     console.log(res);
     this.txPollId = res.txs.poll
-    
+    this.txVotersId = res.txs.voters
+    // this.txVotesId = res.txs.results
+    this.votes = res.tally.length
+    this.tallySha = this.sha(res.tally)
+    this.txTallyId = res.txs.tally
   });
 }
 
 async fetchVoters(id: string) {
-  await this.apiService.getVoters(id).subscribe((res: string) => {
+  await this.apiService.getVoters(id).subscribe((res: any) => {
     this.voterSha = this.sha(res)
+    this.voters = res.length
   });
 }
 

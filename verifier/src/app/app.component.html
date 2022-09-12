@@ -7,6 +7,15 @@
   </div>
   <p class="proof">Preuve: {{txPollId}} - <a href="https://goerli.etherscan.io/tx/{{txPollId}}">Vérifier sur la blockchain</a></p>
   <!-- <p class="proof">Preuve: 0x{{electionSha}} - <a href="https://goerli.etherscan.io/tx/{{txPollId}}">Vérifier sur la blockchain</a></p> -->
+
+  <h1>Liste electorale</h1>
+  <p>{{voters}} électeurs</p>
+  <p class="proof">Preuve: 0x{{voterSha}} - <a href="https://goerli.etherscan.io/tx/{{txVotersId}}">Vérifier sur la blockchain</a></p>
+
+  <h1>Urne publique</h1>
+  <p>{{votes}} votes</p>
+  <p class="proof">Preuve: 0x{{tallySha}} - <a href="https://goerli.etherscan.io/tx/{{txTallyId}}">Vérifier sur la blockchain</a></p>
+
 </div>
 
 <router-outlet></router-outlet>

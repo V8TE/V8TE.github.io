@@ -13,8 +13,10 @@ import { Election } from './Models/Election';
 export class AppComponent {
   title = 'verifier';
   electionSha!: any;
-  votes: String | undefined;
+  votes!: String;
+  votesLenght!: String;
   voters!: String;
+  votersLenght!: String;
   txPollId!: string;
   txVotersId!: string;
   txVotesId!: string;
@@ -57,11 +59,14 @@ async fetchVotes(id: string) {
 
 async fetchDatas(id: string) {
   await this.apiService.getDatas(id).subscribe((res: any) => {
-    console.log(res);
+    console.log(res.txs);
+    
     this.txPollId = res.txs.poll
     this.txVotersId = res.txs.voters
-    // this.txVotesId = res.txs.results
-    this.votes = res.tally.length
+    this.votes = res.tally
+    this.votesLenght = res.tally.length
+    console.log(this.votes);
+    
     this.tallySha = this.sha(res.tally)
     this.txTallyId = res.txs.tally
   });
@@ -70,7 +75,8 @@ async fetchDatas(id: string) {
 async fetchVoters(id: string) {
   await this.apiService.getVoters(id).subscribe((res: any) => {
     this.voterSha = this.sha(res)
-    this.voters = res.length
+    this.voters = res
+    this.votersLenght = this.voters.length.toString()
   });
 }
 

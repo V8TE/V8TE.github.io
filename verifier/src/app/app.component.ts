@@ -35,6 +35,8 @@ export class AppComponent {
   voterSha: string | undefined;
   tallySha: string | undefined;
   pollId!: string;
+  subject!: String;
+  pollFile!: string;
 
   constructor(
     private router: Router,
@@ -59,14 +61,10 @@ async fetchVotes(id: string) {
 
 async fetchDatas(id: string) {
   await this.apiService.getDatas(id).subscribe((res: any) => {
-    console.log(res.txs);
-    
     this.txPollId = res.txs.poll
     this.txVotersId = res.txs.voters
     this.votes = res.tally
     this.votesLenght = res.tally.length
-    console.log(this.votes);
-    
     this.tallySha = this.sha(res.tally)
     this.txTallyId = res.txs.tally
   });
@@ -81,10 +79,13 @@ async fetchVoters(id: string) {
 }
 
 async fetchElection(id: string) {
-  this.apiService.getElection(id).subscribe((res: any) => {
+  this.apiService.getElection(id).subscribe((res: any) => {    
     this.election.name = res.name;
     this.election = res
+    this.electionSha = this.sha(res);
+    
     let questionsLength = res.questions.length;
+    this.subject = res.description
     for (let i = 1; i < questionsLength ; i++) {
       this.questions.push(this.election.questions[i].question);
     }
@@ -109,6 +110,10 @@ async fetchTally(id: string) {
   sha(v: any) {
     let s = JSON.stringify(v)
     return SHA256(s).toString(enc.Hex)
+  }
+
+  downloadPoll() {
+    
   }
 
   ngOnInit() {

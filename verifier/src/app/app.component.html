@@ -1,12 +1,9 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner" *ngIf="pollId.length > 0">
-  <h1>{{election.name}}</h1>
-  <p>Du {{election.start}} au {{election.end}}</p>
-  <div class="questions" *ngFor="let question of questions" style="display: flex; flex-direction: row">
-    <p style="margin-right: 20px;">{{question}}:</p><p>Oui - Non</p>
-  </div>
-  <p class="proof">Preuve: {{txPollId}} - <a href="https://goerli.etherscan.io/tx/{{txPollId}}">Vérifier sur la blockchain</a></p>
-  <!-- <p class="proof">Preuve: 0x{{electionSha}} - <a href="https://goerli.etherscan.io/tx/{{txPollId}}">Vérifier sur la blockchain</a></p> -->
+  <vc-poll-planned-list [title]="election.name" [subject]="subject" [displayedAnswers]="questions"></vc-poll-planned-list>
+  <!-- <button class="downlad-file" (click)="downloadPoll()">Telecharger les données du scrutin</button> -->
+
+  <p class="proof">Preuve: 0x{{electionSha}} - <a href="https://goerli.etherscan.io/tx/{{txPollId}}">Vérifier sur la blockchain</a></p>
 
   <h1>Liste electorale</h1>
   <p>{{votersLenght}} électeurs</p>
@@ -26,5 +23,6 @@
     </li>
   </ul>
 </div>
+
 
 <router-outlet></router-outlet>

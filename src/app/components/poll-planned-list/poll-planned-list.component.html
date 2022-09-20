@@ -1,0 +1,15 @@
+<div class="form-holder">
+  <div class="safe-area">
+    <h1 id="title">{{title}}</h1>
+    <div class="election-informations">
+      <div class="container-answers">
+        <div class="left-block block"></div>
+        <div class="right-block block">{{subject}}</div>
+      </div>
+    </div>
+    <div class="container-answers" *ngFor="let item of displayedAnswers; let indexOfelement = index;">
+      <div class="left-block block">{{indexOfelement}}</div>
+      <div class="right-block block">{{item}}</div>
+    </div>
+  </div>
+</div>

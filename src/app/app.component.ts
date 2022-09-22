@@ -22,15 +22,18 @@ export class AppComponent {
   txVotersId!: string;
   txVotesId!: string;
   txTallyId!: string;
-  // election = {
-  //   "name": "", 
-  //   "start":"", 
-  //   "end":"", 
-  //   "question":"", 
-  //   "answers": []}
   questions: Array<String> = [];
   election: Election = new Election("", "", "", [], "");
   txs!: Object;
+  tallyValid: boolean = false
+  pollValid: boolean = false
+  votersValid: boolean = false
+  pollFilename: string = ""
+  votersFilename: string = ""
+  tallyFilename: string = ""
+  pollFileHash: string = ""
+  votersFileHash: string = ""
+  tallyFileHash: string = ""
   timer = {};
   API_URL = `http:0.0.0.0:8080`;
   voterSha: string | undefined;
@@ -110,11 +113,54 @@ async fetchTally(id: string) {
     return SHA256(s).toString(enc.Hex)
   }
 
+  shaForDataFromTextFile(v: any) {
+    return SHA256(v).toString(enc.Hex)
+  }
+
+  onFileChanged(event: any) {
+    if (event) {
+      this.fileReader(event.target.files[0]);
+    }
+  }
+
+  private fileReader(file: File) {
+    console.log(file);
+    
+    const fileReader = new FileReader();
+    fileReader.readAsText(file);
+    fileReader.onload = (_e) => {
+      const data = fileReader.result
+      const sha = this.shaForDataFromTextFile(data)
+      switch (sha) {
+        case (this.electionSha): 
+          this.pollValid = true
+          this.pollFilename = file.name
+          this.pollFileHash = sha
+          break;
+        case (this.voterSha): 
+          this.votersValid = true
+          this.votersFilename = file.name
+          this.votersFileHash = sha
+          break;
+        case (this.tallySha): 
+          this.tallyValid = true
+          this.tallyFilename = file.name
+          this.tallyFileHash = sha
+          break;
+      }
+      // for (let i = 0; i !== data.length; i++) {
+        // arr[i] = String.fromCharCode(data[i]);
+      // }
+    };
+  }
+
   downloadPoll() {
-    const blob = new Blob(["Election Sha: " + this.electionSha +
-                          "\nVoters Sha: " + this.voterSha +
-                          "\nTally Sha: " + this.tallySha], {type: 'text/plain'});
-    saveAs(blob, "shas.txt")
+    const poll = new Blob([JSON.stringify(this.election)], {type: 'text/plain'});
+    const tally = new Blob([JSON.stringify(this.votes)], {type: 'text/plain'});
+    const voters = new Blob([JSON.stringify(this.voters)], {type: 'text/plain'});
+    saveAs(poll, "poll.txt")
+    saveAs(tally, "votes.txt")
+    saveAs(voters, "voters.txt")
   }
 
   ngOnInit() {

@@ -52,22 +52,4 @@ export class ApiService {
         `${environment.settings.api}/elections/${id}/datas`
       );
   }
-
-  public getPollFile(id: string) {
-    return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/pollFile`
-      );
-  }
-  
-  public getVotersFile(id: string) {
-    return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/votersFile`
-      );
-  }
-  
-  public getTallyFile(id: string) {
-    return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/tallyFile`
-      );
-  }
 }

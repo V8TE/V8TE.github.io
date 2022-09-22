@@ -14,8 +14,17 @@ ul.list > li {
     background-color: #eee;
     padding: 4px;
 }
+
+.buttons-description {
+    color: rgb(143, 143, 143);
+    margin: 5px auto;
+    font-family: Montserrat;
+    width: fit-content;
+    margin: auto;
+}
   
 .proof {
+    margin-top: 0;
     line-height: 1.5em;
     margin-bottom: 1em;
     font-weight: 600;
@@ -23,6 +32,34 @@ ul.list > li {
     color: #f2f2f2;
     padding: 8px;
     display: flex;
+ }
+
+p {
+    font-family: Montserrat;
+}
+
+li {
+    word-break: break-word;
+}
+
+ .valid-display {
+    display: flex;
+ }
+
+ .filename {
+    font-weight: 700;
+ }
+
+ .downlad-file {
+    margin: 16px auto;
+    height: 40px;
+    border-radius: 17px;
+    background-color: rgb(24,144,255);
+    color: white;
+    font-weight: 600;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
  }
 
 .explanation {

@@ -41,6 +41,7 @@ export class AppComponent {
   pollId!: string;
   subject!: String;
   pollFile!: string;
+  isMobile: boolean = false
 
   constructor(
     private router: Router,
@@ -166,6 +167,23 @@ async fetchTally(id: string) {
   ngOnInit() {
     this.pollId = this.router.url.split('/')[1];
     if (this.pollId.length > 0)
-    this.getDatas()
+     this.getDatas()
+    this.checkIfMobile()
+  }
+
+  checkIfMobile() {
+    if (
+      navigator.userAgent.match(/Android/i) ||
+      navigator.userAgent.match(/webOS/i) ||
+      navigator.userAgent.match(/iPhone/i) ||
+      navigator.userAgent.match(/iPad/i) ||
+      navigator.userAgent.match(/iPod/i) ||
+      navigator.userAgent.match(/BlackBerry/i) ||
+      navigator.userAgent.match(/Windows Phone/i)
+    ) {
+      this.isMobile =  true;
+    } else {
+      this.isMobile = false;
+    }
   }
 }

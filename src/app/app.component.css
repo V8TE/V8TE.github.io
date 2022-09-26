@@ -79,3 +79,35 @@ li {
 p {
     word-break: break-word;
 }
+
+.buttons-description-mob {
+    text-align: center;
+    padding: 0 20px;
+    margin-top: 10px;
+}
+
+.list-mob {
+    margin-left: 5px;
+}
+
+.proof-mob {
+    height: 60px;
+}
+
+.proof-mobile {
+    width: 100%;
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.link-mobile {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.category, .number {
+    margin-left: 8px;
+}

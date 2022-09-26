@@ -13,6 +13,7 @@
 }
 
 #title {
+  margin-top: 10px;
   width: fit-content;
   margin: auto;
   margin-bottom: 32px;
@@ -94,4 +95,22 @@
   font-family: Lato;
   color: #fff;
 
+}
+
+.form-holder-mob {
+  width: 90%;
+  margin: auto;
+}
+
+.container-answers-mob {
+  margin-left: 0;
+}
+
+.safe-area-mob {
+  margin: 0;
+  width: 100%;
+}
+
+.mobile-block {
+  width: 80%;
 }

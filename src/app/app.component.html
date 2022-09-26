@@ -1,18 +1,20 @@
-<!-- Toolbar -->
 <div class="toolbar" role="banner" *ngIf="pollId.length > 0">
   <vc-poll-planned-list [title]="election.name" [subject]="subject" [displayedAnswers]="questions"></vc-poll-planned-list>
 
   <div style="margin: auto; width: fit-content;">
-    <p class="buttons-description">Le premier bouton vous permet de télecharger les données de l'éléction, des votes et l'urne du scrutin.</p>
-    <p class="buttons-description">Le second bouton vous permet de vérifier que les données télechargées sont valides.</p>
+    <p [ngClass]="isMobile ? 'buttons-description buttons-description-mob' : 'buttons-description'">
+      {{'DESCRIPTION.FIRST-BUTTON' | translate}}
+    </p>
+    <p [ngClass]="isMobile ? 'buttons-description buttons-description-mob' : 'buttons-description'">
+      {{'DESCRIPTION.SECOND-BUTTON' | translate}}
+    </p>
     <button class="downlad-file" (click)="downloadPoll()">
-      <img src="assets/download.svg" style="margin-right: 5px; margin-top: -2px"/> Telecharger les données du scrutin
+      <img src="assets/download.svg" style="margin-right: 5px; margin-top: -2px"/> {{'BUTTONS.DOWNLOAD' | translate}}
     </button>
   </div>
-  <!-- <button class="upload-file" (click)="fileInput.click()">upload</button> -->
   
   <div id="file-change" (click)="fileInput.click()" style="margin: auto; width: fit-content;">
-    <button class="downlad-file"><img src="assets/upload.svg" style="margin-right: 5px; margin-top: -2px"/>Hasher les données du scrutin</button>
+    <button class="downlad-file"><img src="assets/upload.svg" style="margin-right: 5px; margin-top: -2px"/>{{'BUTTONS.UPLOAD' | translate}}</button>
     <input style="display: none"
       type="file" accept=".txt" (change)="onFileChanged($event)" #fileInput>
   </div>
@@ -21,30 +23,27 @@
     <img src="assets/dot-green.svg" >
     <p><span class="filename">{{pollFilename}}:</span> {{pollFileHash}}</p>
   </div>
-  <!-- <img *ngIf="!pollValid" src="assets/dot-black.svg" > -->
-  <p class="proof">Preuve: 0x{{electionSha}} - <a href="https://goerli.etherscan.io/tx/{{txPollId}}" target="_blank">Vérifier sur la blockchain</a></p>
-
-  <h1>Liste electorale</h1>
-  <p>{{votersLenght}} électeurs</p>
+  <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{electionSha}} - </span><a href="https://goerli.etherscan.io/tx/{{txPollId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
+  
+  <h1 class="category">{{'TITLES.VOTERS' | translate}}</h1>
+  <p class="category">{{votersLenght}} {{'DESCRIPTION.VOTERS' | translate}}</p>
   <div class="valid-display" *ngIf="votersValid">
     <img src="assets/dot-green.svg" >
     <p><span class="filename">{{votersFilename}}:</span> {{votersFileHash}}</p>
   </div>
-  <!-- <img *ngIf="!votersValid" src="assets/dot-black.svg" > -->
-  <p class="proof">Preuve: 0x{{voterSha}} - <a href="https://goerli.etherscan.io/tx/{{txVotersId}}" target="_blank">Vérifier sur la blockchain</a></p>
-  <ul class="list">
+  <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{voterSha}} - </span><a href="https://goerli.etherscan.io/tx/{{txVotersId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
+  <ul [ngClass]="isMobile ? 'list list-mob' : 'list'">
     <li *ngFor="let v of voters"><small>{{ v }}</small></li>
   </ul>
 
-  <h1>Urne publique</h1>
-  <p>{{votesLenght}} votes</p>
+  <h1 class="category">{{'TITLES.TALLY' | translate}}</h1>
+  <p class="category">{{votesLenght}} {{'DESCRIPTION.VOTES' | translate}}</p>
   <div class="valid-display" *ngIf="tallyValid">
     <img src="assets/dot-green.svg" >
     <p><span class="filename">{{tallyFilename}}:</span> {{tallyFileHash}}</p>
   </div>
-  <!-- <img *ngIf="!tallyValid" src="assets/dot-black.svg" > -->
-  <p class="proof">Preuve: 0x{{tallySha}} - <a href="https://goerli.etherscan.io/tx/{{txTallyId}}" target="_blank">Vérifier sur la blockchain</a></p>
-  <ul class="list">
+  <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{tallySha}} - </span><a href="https://goerli.etherscan.io/tx/{{txTallyId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
+  <ul [ngClass]="isMobile ? 'list list-mob' : 'list'">
     <li *ngFor="let v of votes">
       <small>{{v}}</small>
     </li>

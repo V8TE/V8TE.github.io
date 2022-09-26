@@ -21,6 +21,6 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - run: npm ci
+    - run: npm ci --legacy-peer-deps
     - run: npm run build --if-present
     - run: cp /home/runner/work/V8TE.github.io/V8TE.github.io/docs/index.html /home/runner/work/V8TE.github.io/V8TE.github.io/docs/404.html

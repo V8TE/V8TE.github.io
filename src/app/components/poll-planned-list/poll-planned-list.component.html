@@ -1,16 +1,16 @@
 <div [ngClass]="isMobile ? 'form-holder-mob' : 'form-holder'">
   <div [ngClass]="isMobile ? 'safe-area safe-area-mob' : 'safe-area'">
     <h1 id="title">{{title}}</h1>
-    <div class="election-informations">
+    <div *ngFor="let subject of subjects; let index = index" class="election-informations">
       <div [ngClass]="isMobile ? 'container-answers container-answers-mob' : 'container-answers'">
         <div class="left-block block"></div>
         <div [ngClass]="isMobile ? 'right-block block mobile-block' : 'right-block block'">{{subject}}</div>
       </div>
-    </div>
-    <div [ngClass]="isMobile ? 'container-answers container-answers-mob' : 'container-answers'"
-    *ngFor="let item of displayedAnswers; let indexOfelement = index;">
+      <div [ngClass]="isMobile ? 'container-answers container-answers-mob' : 'container-answers'"
+        *ngFor="let item of displayedAnswers[index]; let indexOfelement = index;">
       <div class="left-block block">{{indexOfelement}}</div>
-      <div [ngClass]="isMobile ? 'right-block block mobile-block' : 'right-block block'">{{item}}</div>
+      <div [ngClass]="isMobile ? 'right-block block mobile-block' : 'right-block block'">{{item.question}}</div>
+    </div>
     </div>
   </div>
 </div>

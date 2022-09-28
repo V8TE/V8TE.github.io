@@ -42,6 +42,8 @@ export class AppComponent {
   subject!: String;
   pollFile!: string;
   isMobile: boolean = false
+  listNames = []
+  answers: any[] = []
 
   constructor(
     private router: Router,
@@ -57,10 +59,34 @@ getDatas() {
   this.fetchVoters(this.pollId)
   this.fetchTally(this.pollId)
   this.fetchDatas(this.pollId)
+  this.fetchLists(this.pollId)
 }
 
 async fetchVotes(id: string) {
   await this.apiService.getVotes(id).subscribe((res: any) => {
+  });
+}
+
+async fetchLists(id: string) {
+  await this.apiService.getLists(id).subscribe((res: any) => {
+    const answers: Array<any> = res.displayedQuestions.splice(1, res.displayedQuestions.length - 2)
+    let idx: any[][] = []
+    let tmpArr: any[] = []
+    answers.forEach(item => {
+      if (tmpArr.length == 0) 
+        tmpArr.push(item)
+      else {
+        if (tmpArr[0].parent == item.parent)
+          tmpArr.push(item)
+        else {
+          this.answers.push(tmpArr)
+          tmpArr = []
+          tmpArr.push(item)
+        }
+      }
+    });
+    this.answers.push(tmpArr)
+    this.listNames = res.displayedQuestions[0].answers.splice(0, res.displayedQuestions[0].answers.length - 1)    
   });
 }
 

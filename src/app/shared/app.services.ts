@@ -29,6 +29,12 @@ export class ApiService {
       );
   }
 
+  public getLists(id: string) {
+    return this.httpClient.get(
+        `${environment.settings.api}/elections/${id}/lists`
+      );
+  }
+  
   public getVoters(id: string) {
     return this.httpClient.get<string>(
         `${environment.settings.api}/elections/${id}/votersanon`

@@ -1,5 +1,5 @@
 <div class="toolbar" role="banner" *ngIf="pollId.length > 0">
-  <vc-poll-planned-list [title]="election.name" [subject]="subject" [displayedAnswers]="questions"></vc-poll-planned-list>
+  <vc-poll-planned-list [title]="election.name" [subjects]="listNames" [displayedAnswers]="answers"></vc-poll-planned-list>
 
   <div style="margin: auto; width: fit-content;">
     <p [ngClass]="isMobile ? 'buttons-description buttons-description-mob' : 'buttons-description'">

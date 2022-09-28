@@ -21,6 +21,7 @@ ul.list > li {
     font-family: Montserrat;
     width: fit-content;
     margin: auto;
+    text-align: center;
 }
   
 .proof {

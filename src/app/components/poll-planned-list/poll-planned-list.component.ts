@@ -7,9 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class PollPlannedList implements OnInit {
-  @Input() displayedAnswers!: Array<String>
+  @Input() displayedAnswers!: any[]
   @Input() title!: String
-  @Input() subject!: String
+  @Input() subjects!: Array<String>
   isMobile: boolean = false
 
   ngOnInit(): void {

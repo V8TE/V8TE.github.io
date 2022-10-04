@@ -70,7 +70,6 @@ async fetchVotes(id: string) {
 async fetchLists(id: string) {
   await this.apiService.getLists(id).subscribe((res: any) => {
     const answers: Array<any> = res.displayedQuestions.splice(1, res.displayedQuestions.length - 2)
-    let idx: any[][] = []
     let tmpArr: any[] = []
     answers.forEach(item => {
       if (tmpArr.length == 0) 

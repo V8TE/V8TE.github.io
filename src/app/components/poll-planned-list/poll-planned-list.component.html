@@ -8,7 +8,7 @@
       </div>
       <div [ngClass]="isMobile ? 'container-answers container-answers-mob' : 'container-answers'"
         *ngFor="let item of displayedAnswers[index]; let indexOfelement = index;">
-      <div class="left-block block">{{indexOfelement}}</div>
+      <div class="left-block block">{{indexOfelement + 1}}</div>
       <div [ngClass]="isMobile ? 'right-block block mobile-block' : 'right-block block'">{{item.question}}</div>
     </div>
     </div>

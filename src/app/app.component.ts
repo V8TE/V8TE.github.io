@@ -14,7 +14,8 @@ import { saveAs } from 'file-saver';
 export class AppComponent {
   title = 'verifier';
   electionSha!: any;
-  votes!: String;
+  votes!: String[];
+  votesSha: String[] = [];
   votesLenght!: String;
   voters!: String;
   votersLenght!: String;
@@ -94,8 +95,10 @@ async fetchDatas(id: string) {
     this.txPollId = res.txs.poll
     this.txVotersId = res.txs.voters
     this.votes = res.tally
+    this.votes.forEach(vote => {
+      this.votesSha.push(this.sha(vote))
+    })
     this.votesLenght = res.tally.length
-    
     this.tallySha = this.sha(res.tally)
     this.txTallyId = res.txs.tally
   });

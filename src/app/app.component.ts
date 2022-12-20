@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SHA256, enc } from "crypto-js"
 import { ApiService } from "src/app/shared/app.services";
 import { Election } from './Models/Election';
@@ -42,12 +42,13 @@ export class AppComponent {
   pollId!: string;
   subject!: String;
   pollFile!: string;
-  isMobile: boolean = false
+  isMobile: boolean = false;
+  round=0;
   listNames = []
   answers: any[] = []
 
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
     private apiService: ApiService
   ) {
   }
@@ -69,11 +70,11 @@ async fetchVotes(id: string) {
 }
 
 async fetchLists(id: string) {
-  await this.apiService.getLists(id).subscribe((res: any) => {
+  await this.apiService.getLists(id, this.round).subscribe((res: any) => {
     const answers: Array<any> = res.displayedQuestions.splice(1, res.displayedQuestions.length - 2)
     let tmpArr: any[] = []
     answers.forEach(item => {
-      if (tmpArr.length == 0) 
+      if (tmpArr.length == 0)
         tmpArr.push(item)
       else {
         if (tmpArr[0].parent == item.parent)
@@ -86,12 +87,12 @@ async fetchLists(id: string) {
       }
     });
     this.answers.push(tmpArr)
-    this.listNames = res.displayedQuestions[0].answers.splice(0, res.displayedQuestions[0].answers.length - 1)    
+    this.listNames = res.displayedQuestions[0].answers.splice(0, res.displayedQuestions[0].answers.length - 1)
   });
 }
 
 async fetchDatas(id: string) {
-  await this.apiService.getDatas(id).subscribe((res: any) => {
+  await this.apiService.getDatas(id, this.round).subscribe((res: any) => {
     this.txPollId = res.txs.poll
     this.txVotersId = res.txs.voters
     this.votes = res.tally
@@ -105,7 +106,7 @@ async fetchDatas(id: string) {
 }
 
 async fetchVoters(id: string) {
-  await this.apiService.getVoters(id).subscribe((res: any) => {
+  await this.apiService.getVoters(id, this.round).subscribe((res: any) => {
     this.voterSha = this.sha(res)
     this.voters = res
     this.votersLenght = this.voters.length.toString()
@@ -113,11 +114,11 @@ async fetchVoters(id: string) {
 }
 
 async fetchElection(id: string) {
-  this.apiService.getElection(id).subscribe((res: any) => {    
+  this.apiService.getElection(id, this.round).subscribe((res: any) => {
     this.election.name = res.name;
     this.election = res
     this.electionSha = this.sha(res);
-    
+
     let questionsLength = res.questions.length;
     this.subject = res.description
     for (let i = 1; i < questionsLength ; i++) {
@@ -127,7 +128,10 @@ async fetchElection(id: string) {
 }
 
 async fetchTally(id: string) {
-  this.apiService.getTally(id).subscribe((res: any) => {
+  this.apiService.getTally(id, this.round).subscribe((res: any) => {
+    this.votesSha = res;
+    this.votesSha = this.votesSha.map(x => this.sha(x));
+    this.votesLenght = this.votesSha.length.toString();
   });
 }
 
@@ -154,24 +158,24 @@ async fetchTally(id: string) {
 
   private fileReader(file: File) {
     console.log(file);
-    
+
     const fileReader = new FileReader();
     fileReader.readAsText(file);
     fileReader.onload = (_e) => {
       const data = fileReader.result
       const sha = this.shaForDataFromTextFile(data)
       switch (sha) {
-        case (this.electionSha): 
+        case (this.electionSha):
           this.pollValid = true
           this.pollFilename = file.name
           this.pollFileHash = sha
           break;
-        case (this.voterSha): 
+        case (this.voterSha):
           this.votersValid = true
           this.votersFilename = file.name
           this.votersFileHash = sha
           break;
-        case (this.tallySha): 
+        case (this.tallySha):
           this.tallyValid = true
           this.tallyFilename = file.name
           this.tallyFileHash = sha
@@ -193,9 +197,17 @@ async fetchTally(id: string) {
   }
 
   ngOnInit() {
-    this.pollId = this.router.url.split('/')[1];
-    if (this.pollId.length > 0)
-     this.getDatas()
+    this.route.queryParams.subscribe(params => {
+      if (params['id'] != null) { this.pollId = params['id']};
+      if (this.pollId.length > 0) {
+        this.route.queryParams.subscribe((qParams) => {
+          if (qParams["round"] !== null && !isNaN(parseInt(qParams["round"]))) {
+            this.round = parseInt(qParams["round"]);
+          }
+            this.getDatas();
+        });
+      }
+    });
     this.checkIfMobile()
   }
 

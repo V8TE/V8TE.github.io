@@ -7,7 +7,7 @@ export const environment = {
   //     user: 'bogdandrb@gmail.com',
   //     pass: 'v8tepass'
   //   }
-  // }
+  // },
 
   firebase: {
     apiKey: "AIzaSyAY8vB8O5oG4WwHUL310u_JwqtC1X4iApU",

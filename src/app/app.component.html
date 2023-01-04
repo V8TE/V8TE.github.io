@@ -25,7 +25,7 @@
   </div>
   <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{electionSha}} - </span><a href="https://goerli.etherscan.io/tx/{{txPollId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
   
-  <h1 class="category">{{'TITLES.VOTERS' | translate}}</h1>
+  <h1 class="category title-category">{{'TITLES.VOTERS' | translate}}</h1>
   <p class="category">{{votersLenght}} {{'DESCRIPTION.VOTERS' | translate}}</p>
   <div class="valid-display" *ngIf="votersValid">
     <img src="assets/dot-green.svg" >
@@ -36,7 +36,7 @@
     <li *ngFor="let v of voters"><small>{{ v }}</small></li>
   </ul>
 
-  <h1 class="category">{{'TITLES.TALLY' | translate}}</h1>
+  <h1 class="category title-category">{{'TITLES.TALLY' | translate}}</h1>
   <p class="category">{{votesLenght}} {{'DESCRIPTION.VOTES' | translate}}</p>
   <div class="valid-display" *ngIf="tallyValid">
     <img src="assets/dot-green.svg" >

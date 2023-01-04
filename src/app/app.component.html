@@ -23,7 +23,7 @@
     <img src="assets/dot-green.svg" >
     <p><span class="filename">{{pollFilename}}:</span> {{pollFileHash}}</p>
   </div>
-  <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{electionSha}} - </span><a href="https://goerli.etherscan.io/tx/{{txPollId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
+  <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{electionSha}} -&nbsp;</span><a href="https://goerli.etherscan.io/tx/{{txPollId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
   
   <h1 class="category title-category">{{'TITLES.VOTERS' | translate}}</h1>
   <p class="category">{{votersLenght}} {{'DESCRIPTION.VOTERS' | translate}}</p>
@@ -31,7 +31,7 @@
     <img src="assets/dot-green.svg" >
     <p><span class="filename">{{votersFilename}}:</span> {{votersFileHash}}</p>
   </div>
-  <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{voterSha}} - </span><a href="https://goerli.etherscan.io/tx/{{txVotersId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
+  <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{voterSha}} -&nbsp;</span><a href="https://goerli.etherscan.io/tx/{{txVotersId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
   <ul [ngClass]="isMobile ? 'list list-mob' : 'list'">
     <li *ngFor="let v of voters"><span>{{ v }}</span></li>
   </ul>
@@ -42,7 +42,7 @@
     <img src="assets/dot-green.svg" >
     <p><span class="filename">{{tallyFilename}}:</span> {{tallyFileHash}}</p>
   </div>
-  <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{tallySha}} - </span><a href="https://goerli.etherscan.io/tx/{{txTallyId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
+  <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{tallySha}} -&nbsp;</span><a href="https://goerli.etherscan.io/tx/{{txTallyId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
   <ul [ngClass]="isMobile ? 'list list-mob' : 'list'">
     <li *ngFor="let v of votesSha">
       <span>{{v}}</span>

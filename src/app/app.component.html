@@ -33,7 +33,7 @@
   </div>
   <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{voterSha}} - </span><a href="https://goerli.etherscan.io/tx/{{txVotersId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
   <ul [ngClass]="isMobile ? 'list list-mob' : 'list'">
-    <li *ngFor="let v of voters"><small>{{ v }}</small></li>
+    <li *ngFor="let v of voters"><span>{{ v }}</span></li>
   </ul>
 
   <h1 class="category title-category">{{'TITLES.TALLY' | translate}}</h1>
@@ -45,7 +45,7 @@
   <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{tallySha}} - </span><a href="https://goerli.etherscan.io/tx/{{txTallyId}}" target="_blank" [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
   <ul [ngClass]="isMobile ? 'list list-mob' : 'list'">
     <li *ngFor="let v of votesSha">
-      <small>{{v}}</small>
+      <span>{{v}}</span>
     </li>
   </ul>
 </div>

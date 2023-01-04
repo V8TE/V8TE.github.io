@@ -4,8 +4,8 @@
         "TALLY": "Urne publique " 
     },
     "DESCRIPTION": {
-        "FIRST-BUTTON": "Le premier bouton vous permet de télecharger les données de l'éléction, des votes et l'urne du scrutin.",
-        "SECOND-BUTTON": "Le second bouton vous permet de vérifier que les données télechargées sont valides.",
+        "FIRST-BUTTON": "Le premier bouton vous permet de télécharger les données de l'élection, des votes et l'urne du scrutin.",
+        "SECOND-BUTTON": "Le second bouton vous permet de vérifier que les données téléchargées sont valides.",
         "VOTES": "votes",
         "VOTERS": "électeurs",
         "PROOF": "Preuve"

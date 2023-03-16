@@ -8,8 +8,6 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class ApiService {
-  //apiURL: string;
-  //resultsURL: string;
   httpOptions = {
     headers: new HttpHeaders({
         'Accept': 'text/html',
@@ -29,33 +27,33 @@ export class ApiService {
       );
   }
 
-  public getLists(id: string) {
+  public getLists(id: string, round:number) {
     return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/lists`
+        `${environment.settings.api}/elections/${id}/lists?round=${round}`
       );
   }
-  
-  public getVoters(id: string) {
+
+  public getVoters(id: string, round:number) {
     return this.httpClient.get<string>(
-        `${environment.settings.api}/elections/${id}/votersanon`
+        `${environment.settings.api}/elections/${id}/votersanon?round=${round}`
       );
   }
 
-  public getTally(id: string) {
+  public getTally(id: string, round:number) {
     return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/tally`
+        `${environment.settings.api}/elections/${id}/tally?round=${round}`
       );
   }
 
-  public getElection(id: string) {
+  public getElection(id: string, round:number) {
     return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/params`
+        `${environment.settings.api}/elections/${id}/params?round=${round}`
       );
   }
 
-  public getDatas(id: string) {
+  public getDatas(id: string, round:number) {
     return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/datas`
+        `${environment.settings.api}/elections/${id}/datas?round=${round}`
       );
   }
 }

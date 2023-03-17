@@ -38,6 +38,7 @@
 
   <h1 class="category title-category">{{'TITLES.TALLY' | translate}}</h1>
   <p class="category">{{votesLenght}} {{'DESCRIPTION.VOTES' | translate}}</p>
+  <p class="category">{{votesSha.length}} {{'DESCRIPTION.VOTES' | translate}}</p>
   <div class="valid-display" *ngIf="tallyValid">
     <img src="assets/dot-green.svg" >
     <p><span class="filename">{{tallyFilename}}:</span> {{tallyFileHash}}</p>

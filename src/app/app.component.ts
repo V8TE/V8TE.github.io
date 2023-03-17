@@ -98,7 +98,6 @@ async fetchDatas(id: string) {
     this.txPollId = res.txs.poll
     this.txVotersId = res.txs.voters
     this.votes = res.tally
-    this.votesLenght = res.tally.length
     this.tallySha = this.sha(res.tally)
     this.txTallyId = res.txs.tally
   });
@@ -131,6 +130,8 @@ async fetchTally(id: string) {
     this.votesSha = res;
     this.votesSha = this.votesSha.map(x => this.sha(x));
     this.votesLenght = this.votesSha.length.toString();
+    console.log("votesSha -- fethc Tally");
+    console.log(this.votesLenght);
   });
 }
 

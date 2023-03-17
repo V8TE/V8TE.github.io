@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
-  // settings: {
-  //   api: 'https://api.beta.v8te.com',
-  //   livews: 'wss://api.beta.v8te.com/ws/elections/',
-  //   firebase: {
-  //     user: 'bogdandrb@gmail.com',
-  //     pass: 'v8tepass'
-  //   }
-  // },
+  settings: {
+    api: 'https://api.beta.v8te.com',
+    livews: 'wss://api.beta.v8te.com/ws/elections/',
+    firebase: {
+      user: 'bogdandrb@gmail.com',
+      pass: 'v8tepass'
+    }
+  },
 
   firebase: {
     apiKey: "AIzaSyAY8vB8O5oG4WwHUL310u_JwqtC1X4iApU",
@@ -19,8 +19,8 @@ export const environment = {
     appId: "1:418674463756:web:8f110be6b454dca9bb0a29",
     measurementId: "G-P7SZ00CVHN"
   },
-  settings: {
-    api: 'https://api.v8te.com',
-    livews: 'wss://api.v8te.com/ws/elections/',
-  }
+  // settings: {
+  //   api: 'https://api.v8te.com',
+  //   livews: 'wss://api.v8te.com/ws/elections/',
+  // }
 };

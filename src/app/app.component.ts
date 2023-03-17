@@ -98,9 +98,6 @@ async fetchDatas(id: string) {
     this.txPollId = res.txs.poll
     this.txVotersId = res.txs.voters
     this.votes = res.tally
-    this.votes.forEach(vote => {
-      this.votesSha.push(this.sha(vote))
-    })
     this.votesLenght = res.tally.length
     this.tallySha = this.sha(res.tally)
     this.txTallyId = res.txs.tally

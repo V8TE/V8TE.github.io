@@ -130,8 +130,6 @@ async fetchTally(id: string) {
     this.votesSha = res;
     this.votesSha = this.votesSha.map(x => this.sha(x));
     this.votesLenght = this.votesSha.length.toString();
-    console.log("votesSha -- fethc Tally");
-    console.log(this.votesLenght);
   });
 }
 
@@ -157,8 +155,6 @@ async fetchTally(id: string) {
   }
 
   private fileReader(file: File) {
-    console.log(file);
-    
     const fileReader = new FileReader();
     fileReader.readAsText(file);
     fileReader.onload = (_e) => {

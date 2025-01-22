@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "verifier"
+  "defaultProject": "verifier",
+  "cli": {
+    "analytics": false
+  }
 }

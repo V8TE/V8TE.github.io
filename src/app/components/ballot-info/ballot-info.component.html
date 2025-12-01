@@ -1,0 +1,24 @@
+<div [ngClass]="isMobile ? 'form-holder-mob' : 'form-holder'">
+  <div class="date">
+    <h1 class="light-blue no-margin text-lg"><img src="assets/ballot-mail-icon.svg"
+        style="margin-right: 5px;" />BULLETINS PRÉSENTS DANS L'URNE</h1>
+
+    <p class="dark-blue text-sm">Cette section présente les bulletins déposés dans l’urne, sans indication de
+      l’identité.</p>
+
+    <div>
+      <div *ngFor="let votes of votesShaF">
+        <div>{{votes}}</div>
+      </div>
+    </div>
+
+
+    <p class="dark-grey text-xs">Chaque vote correspond à un bulletin chiffré et signé, <span class="bold">stocké dans
+        l'urne.</span> Les
+      identités des électeurs ne sont pas liées à ces bulletins, mais tout observation peut vérifier que l'urne n'est ni
+      modifiée, ni vidée</p>
+  </div>
+
+
+  <!-- <div>user G74-oLHBRK6xvvvXT09r9w</div> -->
+</div>

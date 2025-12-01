@@ -1,0 +1,62 @@
+.form-holder {
+  width: 100%;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+  border: solid 1px #DCEEFF;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.separator {
+  width: 1px;
+  background-color: #DCEEFF;
+  align-self: stretch;
+}
+
+.election {
+  border: solid 1px #F0F5FF;
+  border-radius: 10px;
+}
+
+.election-header {
+  background-color: #F0F5FF;
+  padding: 5px 0px;
+}
+
+.svg-icon {
+  margin-right: 5px;
+  filter: invert(47%) sepia(95%) saturate(1576%) hue-rotate(188deg) brightness(95%) contrast(101%);
+}
+
+.right-block {
+  width: 310px;
+  text-align: right;
+}
+
+.done {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  min-width: 20px; /* Empêche l'écrasement */
+  flex-shrink: 0; /* Empêche le rétrécissement dans une flexbox */
+  background-color: #1c90ff;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.done::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

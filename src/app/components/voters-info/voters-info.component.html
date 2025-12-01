@@ -1,0 +1,31 @@
+<div [ngClass]="isMobile ? 'form-holder-mob' : 'form-holder'">
+  <div class="flex-col">
+    <h1 class="light-blue no-margin text-lg"><img src="assets/silhouette_icon.svg" class="svg-icon" />Liste des
+      électeurs</h1>
+    <p class="dark-blue no-margin mb-20">Cette section présente le nombre total d’électeurs et leur statut (a voté / n’a
+      pas
+      voté), sans relier les
+      électeurs aux bulletins de vote.</p>
+
+    <div class="grid-col-2 mb-10">
+      <div class="card">
+        <p class="dark-blue roboto no-margin">NOMBRE TOTAL D'ÉLECTEURS</p>
+        <p class="light-blue bold no-margin text-lg">{{totalVoters}}</p>
+      </div>
+      <div class="card">
+        <p class="dark-blue roboto no-margin">TAUX DE PARTICIPATION</p>
+        <p class="light-blue bold no-margin text-lg">{{(+voters / +totalVoters * 100) | number:'1.0-1'}}%</p>
+      </div>
+      <div class="card">
+        <p class="dark-blue roboto no-margin">NOMBRE D'ÉLECTEUR AYANT VOTÉ</p>
+        <p class="light-blue bold no-margin text-lg">{{voters}}</p>
+      </div>
+    </div>
+    <p class="no-margin dark-blue bold"><img src="assets/flag-icon.svg" class="svg-icon" />Dernière mise à jour :</p>
+    <p class="no-margin dark-blue ml-15">le 10/11/2025 à 08h55m09s</p>
+
+    <p class="dark-grey text-sm">« La colonne “Statut” indique si l’électeur a utilisé son droit de vote. Le lien entre
+      l’identité de l’électeur
+      et le contenu de son vote n’est jamais accessible, afin de garantir le secret du vote. »</p>
+  </div>
+</div>

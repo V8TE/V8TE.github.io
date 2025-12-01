@@ -1,0 +1,54 @@
+<div [ngClass]="isMobile ? 'form-holder-mob' : 'form-holder'">
+  <div class="date">
+    <h1 class="light-blue no-margin text-lg"><img src="assets/list-icon.svg" style="margin-right: 5px;" />Collège 1</h1>
+
+    <p class="dark-blue text-sm">Cette section présente le nombre total d’électeurs et leur statut (a voté / n’a pas
+      voté), sans relier les
+      électeurs aux bulletins de vote.</p>
+    <div *ngFor="let election of elections">
+      <div class="election mb-10">
+        <div class="election-header">
+          <h2 class="auto-margin dark-blue w-fit text-center">{{election}}</h2>
+        </div>
+        <div class="election-info grid-col-4">
+          <div class="mt-10 mb-10">
+            <p class="text-center dark-blue bold no-margin">NOMBRE D'ÉLECTEURS</p>
+            <h3 class="text-center light-blue bold text-lg no-margin">{{totalVoters}}</h3>
+          </div>
+          <div class="mt-10 mb-10">
+            <p class="text-center dark-blue bold no-margin">NOMBRE DE VOTANTS</p>
+            <h3 class="text-center light-blue bold text-lg no-margin">{{voters}}</h3>
+          </div>
+          <div class="mt-10 mb-10">
+            <p class="text-center dark-blue bold no-margin">BULLETIN PRÉSENT DANS L'URNE</p>
+            <h3 class="text-center light-blue bold text-lg no-margin">{{voters}}</h3>
+          </div>
+          <div class="mt-10 mb-10">
+            <p class="text-center dark-blue bold no-margin">TAUX DE PARTICIPATION</p>
+            <h3 class="text-center light-blue bold text-lg no-margin">{{(+voters / +totalVoters * 100) |
+              number:'1.0-1'}}%</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-row content-between align-center">
+      <div>
+        <p class="dark-blue no-margin text-xs bold"><img src="assets/flag-icon.svg" class="svg-icon" />Dernière mise à
+          jour :</p>
+        <p class="ml-15 dark-blue no-margin text-xs">le 10/11/2025 à 08h55m09s</p>
+      </div>
+
+      <div class="right-block flex-row align-center">
+        <span class="done"></span>
+        <p class="text-xs dark-blue no-margin text-left">Le nombre de votes dans l'urne est cohérent avec le nombre d'électeurs ayant voté</p>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+</div>

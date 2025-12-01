@@ -1,0 +1,12 @@
+.form-holder {
+  width: 100%;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+  border: solid 1px #DCEEFF;
+  padding: 10px 20px;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}

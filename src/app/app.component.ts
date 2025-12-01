@@ -10,7 +10,7 @@ import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css', './shared/common.less']
 })
 export class AppComponent {
   title = 'verifier';
@@ -19,7 +19,7 @@ export class AppComponent {
   votesSha: String[] = [];
   votesLenght!: String;
   voters!: String;
-  votersLenght!: String;
+  votersLength!: String;
   txPollId!: string;
   txVotersId!: string;
   txVotesId!: string;
@@ -47,6 +47,12 @@ export class AppComponent {
   listNames = []
   answers: any[] = []
   round = 0
+  startDate: any;
+  endDate: any;
+  startDateFormatted!: string;
+  startHour!: string;
+  endDateFormatted!: string;
+  endHour!: string;
 
   constructor(
     private router: Router,
@@ -107,12 +113,26 @@ async fetchVoters(id: string) {
   await this.apiService.getVoters(id, this.round).subscribe((res: any) => {
     this.voterSha = this.sha(res)
     this.voters = res
-    this.votersLenght = this.voters.length.toString()
+    this.votersLength = this.voters.length.toString()
   });
 }
 
 async fetchElection(id: string) {
   this.apiService.getElection(id, this.round).subscribe((res: any) => {    
+    
+    this.startDate = res.start;
+    this.endDate = res.end;
+    
+    // Format start date and time
+    const startFormatted = this.formatDateAndTime(res.start);
+    this.startDateFormatted = startFormatted.date;
+    this.startHour = startFormatted.time;
+    
+    // Format end date and time
+    const endFormatted = this.formatDateAndTime(res.end);
+    this.endDateFormatted = endFormatted.date;
+    this.endHour = endFormatted.time;
+    
     this.election.name = res.name;
     this.election = res
     this.electionSha = this.sha(res);
@@ -127,6 +147,8 @@ async fetchElection(id: string) {
 
 async fetchTally(id: string) {
   this.apiService.getTally(id, this.round).subscribe((res: any) => {
+    console.log("res tally", res);
+    
     this.votesSha = res;
     this.votesSha = this.votesSha.map(x => this.sha(x));
     this.votesLenght = this.votesSha.length.toString();
@@ -134,6 +156,21 @@ async fetchTally(id: string) {
 }
 
 // END API
+
+  formatDateAndTime(dateString: string): { date: string, time: string } {
+    const d = new Date(dateString);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    const hours = String(d.getHours()).padStart(2, '0');
+    const minutes = String(d.getMinutes()).padStart(2, '0');
+    const seconds = String(d.getSeconds()).padStart(2, '0');
+    
+    return {
+      date: `${day}/${month}/${year}`,
+      time: `${hours}:${minutes}:${seconds}`
+    };
+  }
 
   formatDate(v: string) {
     return new Date(v).toLocaleString()

@@ -1,3 +1,15 @@
+.toolbar{
+    background-color: #F0F5FF;
+    padding: 30px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.toolbar-content {
+    width: 700px;
+    margin: 0 auto;
+}
+
 a {
     text-decoration: none;
     color: #42b883;

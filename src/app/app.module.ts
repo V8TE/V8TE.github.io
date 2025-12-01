@@ -6,7 +6,11 @@ import { PollPlannedList } from './components/poll-planned-list/poll-planned-lis
 import { I18nService } from './core/i18n.service';
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-
+import { PollStatusComponent } from './components/poll-status/poll-status.component';
+import { PollInfoComponent } from './components/poll-info/poll-info.component';
+import { VotersInfoComponent } from './components/voters-info/voters-info.component';
+import { CollegeInfoComponent } from './components/college-info/college-info.component';
+import { BallotInfoComponent } from './components/ballot-info/ballot-info.component'; 
 import {
   HttpClient,
   HttpClientModule,
@@ -16,7 +20,12 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
-    PollPlannedList
+    PollPlannedList,
+    PollStatusComponent,
+    PollInfoComponent,
+    VotersInfoComponent,
+    CollegeInfoComponent,
+    BallotInfoComponent
   ],
   imports: [
     BrowserModule,

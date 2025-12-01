@@ -7,7 +7,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
-          "strict": true
+          "strict": true,
+          "style": "less"
         }
       },
       "root": "",
@@ -32,6 +33,14 @@
             "scripts": []
           },
           "configurations": {
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -67,6 +76,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "staging": {
+              "browserTarget": "verifier:build:staging"
+            },
             "production": {
               "browserTarget": "verifier:build:production"
             },

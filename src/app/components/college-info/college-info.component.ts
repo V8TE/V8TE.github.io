@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'vc-college-info',
-  templateUrl: 'college-info.component.html',
-  styleUrls: ['./college-info.component.css', '../../shared/common.less']
+    selector: 'vc-college-info',
+    templateUrl: 'college-info.component.html',
+    styleUrls: ['./college-info.component.css', '../../shared/common.less'],
+    standalone: false
 })
 
 export class CollegeInfoComponent implements OnInit {

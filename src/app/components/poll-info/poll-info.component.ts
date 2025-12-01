@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'vc-poll-info',
-  templateUrl: 'poll-info.component.html',
-  styleUrls: ['./poll-info.component.css', '../../shared/common.less']
+    selector: 'vc-poll-info',
+    templateUrl: 'poll-info.component.html',
+    styleUrls: ['./poll-info.component.css', '../../shared/common.less'],
+    standalone: false
 })
 
 export class PollInfoComponent implements OnInit {

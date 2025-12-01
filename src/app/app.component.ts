@@ -8,9 +8,10 @@ import { saveAs } from 'file-saver';
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', './shared/common.less']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css', './shared/common.less'],
+    standalone: false
 })
 export class AppComponent {
   title = 'verifier';

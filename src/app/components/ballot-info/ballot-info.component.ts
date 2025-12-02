@@ -11,19 +11,8 @@ export class BallotInfoComponent implements OnInit {
   @Input() title!: String
   @Input() subjects!: any[]
   @Input() displayedAnswers!: any[]
-  @Input() votesSha: Array<String> = []
+  @Input() votesSha: Array<{vote: String}> = [].map(vote => ({ vote }))
   @Input() votesShaF: Array<{vote: String}> = [
-    "0BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "1BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "2BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "3BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "4BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "5BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "6BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "7BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "8BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "9BBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg=",
-    "ABBc3yb4fTTMg6MFloUsRET3UZP7e45UoZBcPdoSBzf2BGzVw185fYGUU60TY4MiBd0A8vwKoobD5RYLrou4Zrg="
   ].map(vote => ({ vote }))
   @Input() tallySha: String | undefined;
   @Input() txTallyId: String | undefined;

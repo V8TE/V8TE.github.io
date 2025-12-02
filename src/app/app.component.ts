@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { SHA256, enc } from "crypto-js"
+import * as CryptoJS from 'crypto-js';
 import { ApiService } from "src/app/shared/app.services";
 import { Election } from './Models/Election';
-import { saveAs } from 'file-saver';
+import saveAs from 'file-saver';
 
 
 @Component({
@@ -54,6 +54,7 @@ export class AppComponent {
   startHour!: string;
   endDateFormatted!: string;
   endHour!: string;
+  electionTitle: any;
 
   constructor(
     private router: Router,
@@ -81,6 +82,7 @@ async fetchVotes(id: string) {
 async fetchLists(id: string) {
   await this.apiService.getLists(id, this.round).subscribe((res: any) => {
     const answers: Array<any> = res.displayedQuestions.splice(1, res.displayedQuestions.length - 2)
+    this.electionTitle = res.title
     let tmpArr: any[] = []
     answers.forEach(item => {
       if (tmpArr.length == 0) 
@@ -124,6 +126,7 @@ async fetchElection(id: string) {
     this.startDate = res.start;
     this.endDate = res.end;
     
+    
     // Format start date and time
     const startFormatted = this.formatDateAndTime(res.start);
     this.startDateFormatted = startFormatted.date;
@@ -148,7 +151,6 @@ async fetchElection(id: string) {
 
 async fetchTally(id: string) {
   this.apiService.getTally(id, this.round).subscribe((res: any) => {
-    console.log("res tally", res);
     
     this.votesSha = res;
     this.votesSha = this.votesSha.map(x => this.sha(x));
@@ -179,11 +181,11 @@ async fetchTally(id: string) {
 
   sha(v: any) {
     let s = JSON.stringify(v)
-    return SHA256(s).toString(enc.Hex)
+    return CryptoJS.SHA256(s).toString(CryptoJS.enc.Hex)
   }
 
   shaForDataFromTextFile(v: any) {
-    return SHA256(v).toString(enc.Hex)
+    return CryptoJS.SHA256(v).toString(CryptoJS.enc.Hex)
   }
 
   onFileChanged(event: any) {
@@ -249,5 +251,11 @@ async fetchTally(id: string) {
     } else {
       this.isMobile = false;
     }
+  }
+
+  isDatePassed(dateString: string): boolean {
+    const date = new Date(dateString);
+    const now = new Date();
+    return date < now;
   }
 }

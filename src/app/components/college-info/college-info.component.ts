@@ -15,18 +15,28 @@ export class CollegeInfoComponent implements OnInit {
   @Input() totalVoters!: String
   @Input() voters!: String
   isMobile: boolean = false
+  isPanelExpanded: boolean = false;
+  description: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+  toggleDescription() {
+    this.isPanelExpanded = !this.isPanelExpanded;
+  }
+
+  getTruncatedDescription(): string {
+    if (!this.description) {
+      return '';
+    }
+    if (this.description.length <= 100) {
+      return this.description;
+    }
+    return this.description.substring(0, 100) + '...';
+  }
 
   ngOnInit(): void {
     this.checkIfMobile()
-    console.log(this.title);
-    console.log(this.subjects);
-    console.log(this.displayedAnswers);
   }
 
   ngOnChanges(): void {
-    console.log(this.title);
-    console.log(this.subjects);
-    console.log(this.displayedAnswers);
   }
 
   checkIfMobile() {
@@ -43,6 +53,17 @@ export class CollegeInfoComponent implements OnInit {
     } else {
       this.isMobile = false;
     }
+  }
+
+  getFormattedDateTime(): string {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    
+    return `le ${day}/${month}/${year} à ${hours}h${minutes}`;
   }
   
 }

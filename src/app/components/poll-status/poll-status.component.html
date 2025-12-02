@@ -1,13 +1,13 @@
-<div [ngClass]="isMobile ? 'form-holder-mob' : 'form-holder'">
+<div [ngClass]="isMobile ? 'form-holder form-holder-mob' : 'form-holder'">
   <div class="name">
-    <p class="light-blue no-margin bold"><span class="light-blue mr-10">•</span>Nom du scrutin</p>
+    <p class="light-blue no-margin bold mb-5"><span class="light-blue mr-10">•</span>Nom du scrutin</p>
     <p class="dark-blue no-margin"><span class="white mr-10">•</span>{{title}}</p>
   </div>
   <div class="status flex-row gap-10">
     <img src="assets/ongoing_poll_icon.svg"/>
     <div>
-      <p class="no-margin dark-grey">status du scrutin</p>
-      <p class="no-margin dark-blue bold">Status: {{status}}</p>
+      <p class="no-margin dark-grey mb-5">Status du scrutin</p>
+      <p class="no-margin dark-blue bold">{{displayedStatus}}</p>
     </div>
   </div>
 </div>

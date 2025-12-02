@@ -10,10 +10,19 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PollStatusComponent implements OnInit {
   @Input() title!: String
   @Input() status!: String
+  displayedStatus!: String
   isMobile: boolean = false
 
   ngOnInit(): void {
     this.checkIfMobile()
+  }
+
+  ngOnChanges(): void {
+    if (this.status === 'OPEN') {
+      this.displayedStatus = "EN COURS...";
+    } else {
+      this.displayedStatus = "TERMINÉ";
+    }
   }
 
   checkIfMobile() {

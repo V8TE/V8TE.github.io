@@ -16,13 +16,9 @@ export class PollInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkIfMobile()
-    console.log(this.startDate);
-    console.log(this.endDate);
   }
 
   ngOnChanges(): void {
-    console.log(this.startDate);
-    console.log(this.endDate);
   }
 
   checkIfMobile() {

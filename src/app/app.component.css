@@ -5,9 +5,28 @@
     box-sizing: border-box;
 }
 
+.toolbar-mob {
+    background-color: #F0F5FF;
+    padding: 30px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .toolbar-content {
     width: 700px;
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .toolbar-content {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    #head-icon {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 a {

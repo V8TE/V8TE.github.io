@@ -10,53 +10,118 @@
   margin-bottom: 10px;
 }
 
-.separator {
-  width: 1px;
-  background-color: #DCEEFF;
-  align-self: stretch;
-}
-
-.election {
-  border: solid 1px #F0F5FF;
-  border-radius: 10px;
-}
-
-.election-header {
+.header {
   background-color: #F0F5FF;
-  padding: 5px 0px;
 }
 
-.svg-icon {
-  margin-right: 5px;
-  filter: invert(47%) sepia(95%) saturate(1576%) hue-rotate(188deg) brightness(95%) contrast(101%);
+.header:hover {
+  background-color: #F0F5FF !important;
+  color: #2B2D67 !important;
+}
+:host ::ng-deep .p-datatable-column-sorted {
+  background-color: #F0F5FF !important;
+  color: #2B2D67 !important;
 }
 
-.right-block {
-  width: 310px;
-  text-align: right;
+:host ::ng-deep .p-datatable-sort-icon {
+  color: #64748b !important;
 }
 
-.done {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  min-width: 20px; /* Empêche l'écrasement */
-  flex-shrink: 0; /* Empêche le rétrécissement dans une flexbox */
-  background-color: #1c90ff;
-  border-radius: 50%;
-  position: relative;
-  margin-right: 5px;
-  vertical-align: middle;
+:host ::ng-deep .p-paginator {
+  background-color: white;
 }
 
-.done::after {
-  content: '';
-  position: absolute;
-  left: 7px;
-  top: 3px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+:host ::ng-deep .p-datatable-table-container {
+  border: solid 1px #E7F4FF;
+  /* border-radius: 10px; */
+}
+
+:host ::ng-deep .p-datatable-thead>tr>th {
+  border-bottom: solid 1px #E7F4FF;
+}
+
+:host ::ng-deep .p-datatable-tbody>tr>td {
+  border: none;
+}
+
+:host ::ng-deep .p-paginator-page-selected {
+  background-color: white !important;
+  font-weight: bold !important;
+  color: #1990FF !important;
+}
+
+/* Enlever le background noir au hover sur tous les éléments de pagination */
+:host ::ng-deep .p-paginator .p-paginator-page:hover,
+:host ::ng-deep .p-paginator .p-paginator-next:hover,
+:host ::ng-deep .p-paginator .p-paginator-prev:hover,
+:host ::ng-deep .p-paginator .p-paginator-first:hover,
+:host ::ng-deep .p-paginator .p-paginator-last:hover {
+  background: white !important;
+  background-color: white !important;
+  color: #1990FF !important;
+}
+
+.row-odd {
+  background-color: white !important;
+}
+
+.row-even {
+  background-color: #F0F5FF !important;
+}
+
+/* Styles pour le champ de recherche */
+.search-container {
+  display: flex;
+  gap: 10px;
+  border: solid 1px #E7F4FF;
+  align-items: center;
+  padding: 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: solid 1px #DCEEFF;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #1990FF;
+}
+
+/* Style pour la ligne trouvée */
+:host ::ng-deep .found-row td {
+  border: solid 2px #28a745 !important;
+  background-color: #d4edda !important;
+  padding: 12px 10px !important;
+}
+/* Styles responsive pour mobile */
+@media (max-width: 768px) {
+  :host ::ng-deep .p-paginator {
+    padding: 5px !important;
+  }
+  
+  :host ::ng-deep .p-paginator .p-paginator-page,
+  :host ::ng-deep .p-paginator .p-paginator-next,
+  :host ::ng-deep .p-paginator .p-paginator-prev,
+  :host ::ng-deep .p-paginator .p-paginator-first,
+  :host ::ng-deep .p-paginator .p-paginator-last {
+    min-width: 30px !important;
+    height: 30px !important;
+    padding: 0 5px !important;
+    font-size: 12px !important;
+  }
+  
+  :host ::ng-deep .p-paginator .p-paginator-pages {
+    gap: 2px !important;
+  }
+  
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

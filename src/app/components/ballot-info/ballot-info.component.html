@@ -10,7 +10,7 @@
     <div class="search-container flex-row">
       <div class="w-half">
         <div class="text-left">
-          <p class="dark-blue no-margin mb-5">Collège :</p>
+          <p class="dark-blue no-margin mb-5"><img class="mr-10" src="assets/filters-icon.svg" alt="search" />Collège :</p>
         </div>
 
         <div>
@@ -26,10 +26,10 @@
           <p class="dark-blue no-margin mb-5"><span class="bold">Collez ici</span> le chiffré de votre bulletin</p>
         </div>
 
-        <div>
+        <div class="input-wrapper">
           <input type="text" [(ngModel)]="searchSha" (keyup.enter)="searchForSha()" (input)="searchForSha()"
             placeholder="" class="search-input w-full dark-blue" />
-
+          <img src="assets/search.svg" class="input-icon" alt="search" />
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
         <ng-template pTemplate="body" let-vote let-rowIndex="rowIndex">
           <tr
             [ngClass]="{'row-odd': rowIndex % 2 === 0, 'row-even': rowIndex % 2 !== 0, 'found-row': isFoundRow(rowIndex)}">
-            <td style="word-break: break-all;" class="text-xxs light-blue">{{vote.vote}}</td>
+            <td style="word-break: break-all;" class="text-xs light-blue">{{vote.vote}}</td>
           </tr>
         </ng-template>
       </p-table>

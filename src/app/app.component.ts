@@ -17,7 +17,7 @@ export class AppComponent {
   title = 'verifier';
   electionSha!: any;
   votes!: String[];
-  votesSha: String[] = [];
+  votesSha: Array<{vote: String}> = [];
   votesLenght!: String;
   voters!: String;
   votersLength!: String;
@@ -152,8 +152,7 @@ async fetchElection(id: string) {
 async fetchTally(id: string) {
   this.apiService.getTally(id, this.round).subscribe((res: any) => {
     
-    this.votesSha = res;
-    this.votesSha = this.votesSha.map(x => this.sha(x));
+    this.votesSha = res.map((x: any) => ({ vote: this.sha(x) }));
     this.votesLenght = this.votesSha.length.toString();
   });
 }

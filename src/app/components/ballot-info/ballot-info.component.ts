@@ -53,10 +53,12 @@ export class BallotInfoComponent implements OnInit {
       return;
     }
 
-    const index = this.votesShaF.findIndex(item => 
+    const index = this.votesSha.findIndex(item => 
       item.vote.toString().toLowerCase() === this.searchSha.trim().toLowerCase()
     );
 
+    console.log(index);
+    
     if (index !== -1) {
       this.foundShaIndex = index;
       // Calculer la page où se trouve l'élément (5 éléments par page)

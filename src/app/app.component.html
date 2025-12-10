@@ -1,7 +1,7 @@
 @if (pollId.length > 0) {
 <div [ngClass]="isMobile ? 'toolbar toolbar-mob' : 'toolbar'" role="banner">
   <div class="toolbar-content">
-    <img src="assets/ballot-shield-icon.svg" id="head-icon"/>
+    <img src="assets/ballot-shield-icon.svg" id="head-icon" />
     <h1 class="light-blue text-center">
       TRANSPARENCE DE L'URNE
     </h1>
@@ -12,11 +12,11 @@
     <vc-poll-status [title]="election.name" [status]="isDatePassed(endDate) ? 'CLOSED' : 'OPEN'"></vc-poll-status>
     <vc-poll-info [startDate]="startDateFormatted" [endDate]="endDateFormatted" [startHour]="startHour"
       [endHour]="endHour"></vc-poll-info>
-    <vc-voters-info [totalVoters]="votersLength" [voters]="votesLenght"></vc-voters-info>
-    <vc-college-info [title]="electionTitle" [subjects]="listNames" [displayedAnswers]="answers"
-      [totalVoters]="votersLength" [voters]="votesLenght"></vc-college-info>
+    <!-- <vc-voters-info [totalVoters]="votersLength" [voters]="votesLenght"></vc-voters-info> -->
+    <vc-college-info [title]="electionTitle" [subjects]="listNames" [totalVoters]="votersLength" [voters]="votesLenght"
+      [pollName]="election.name"></vc-college-info>
     <vc-ballot-info [votesSha]="votesSha" [tallySha]="tallySha" [txTallyId]="txTallyId"></vc-ballot-info>
-<!-- 
+    <!-- 
 
     <vc-poll-planned-list [title]="election.name" [subjects]="listNames"
       [displayedAnswers]="answers"></vc-poll-planned-list>

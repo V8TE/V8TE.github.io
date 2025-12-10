@@ -9,28 +9,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export class CollegeInfoComponent implements OnInit {
   @Input() title!: String
+  @Input() pollName!: String
   @Input() subjects!: any[]
-  @Input() displayedAnswers!: any[]
-  @Input() elections: Array<String> = ["Titulaires"]
   @Input() totalVoters!: String
   @Input() voters!: String
   isMobile: boolean = false
   isPanelExpanded: boolean = true;
-  description: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
-  toggleDescription() {
-    this.isPanelExpanded = !this.isPanelExpanded;
-  }
-
-  getTruncatedDescription(): string {
-    if (!this.description) {
-      return '';
-    }
-    if (this.description.length <= 100) {
-      return this.description;
-    }
-    return this.description.substring(0, 100) + '...';
-  }
 
   ngOnInit(): void {
     this.checkIfMobile()

@@ -11,7 +11,8 @@
 
       <div class="w-full">
         <div class="text-left">
-          <p class="dark-blue no-margin mb-5"><span class="bold">Collez ici</span> le chiffré de votre bulletin</p>
+          
+          <p class="dark-blue no-margin mb-5">Confirmer la présence de votre bulletin en copiant votre chiffré ci-dessous.</p>
         </div>
 
         <div class="input-wrapper">
@@ -26,8 +27,11 @@
         [stripedRows]="true" [first]="first">
         <ng-template pTemplate="header">
           <tr>
-            <th pSortableColumn="vote" class="header dark-blue bold">Chiffré du bulletin présent dans l'urne <p-sortIcon
-                field="checkupType" /></th>
+            <th pSortableColumn="vote" class="header dark-blue bold">
+              Chiffré du bulletin présent dans l'urne <p-sortIcon field="checkupType" />
+              <span *ngIf="foundShaIndex == -1 && searchSha.length > 0" style="color: #e22f22; margin-left: 10px;">KO</span>
+              <span *ngIf="foundShaIndex == 0" style="color: #28a745;  margin-left: 10px;">OK</span>
+            </th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-vote let-rowIndex="rowIndex">

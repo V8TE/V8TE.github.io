@@ -28,7 +28,7 @@
         <ng-template pTemplate="header">
           <tr>
             <th pSortableColumn="vote" class="header dark-blue bold">
-              Chiffré du bulletin présent dans l'urne <p-sortIcon field="checkupType" />
+              Chiffré(s) des bulletins présents dans l'urne <p-sortIcon field="checkupType" />
               <span *ngIf="foundShaIndex == -1 && searchSha.length > 0" style="color: #e22f22; margin-left: 10px;">KO</span>
               <span *ngIf="foundShaIndex == 0" style="color: #28a745;  margin-left: 10px;">OK</span>
             </th>

@@ -3,7 +3,8 @@
     <h1 class="light-blue no-margin text-lg mb-10"><img src="assets/ballot-mail-icon.svg" width="23px"
         style="margin-right: 5px;" />Bulletins présents dans l'urne</h1>
 
-    <p class="dark-blue text-sm no-margin mb-20">Cette section présente les bulletins déposés dans l’urne, sans indication
+    <p class="dark-blue text-sm no-margin mb-20">Cette section présente les bulletins déposés dans l’urne, sans
+      indication
       de
       l’identité.</p>
 
@@ -11,8 +12,9 @@
 
       <div class="w-full">
         <div class="text-left">
-          
-          <p class="dark-blue no-margin mb-5">Confirmer la présence de votre bulletin en copiant votre chiffré ci-dessous.</p>
+
+          <p class="dark-blue no-margin mb-5">Confirmer la présence de votre bulletin en copiant votre chiffré
+            ci-dessous.</p>
         </div>
 
         <div class="input-wrapper">
@@ -28,8 +30,10 @@
         <ng-template pTemplate="header">
           <tr>
             <th pSortableColumn="vote" class="header dark-blue bold">
-              Chiffré(s) des bulletins présents dans l'urne <p-sortIcon field="checkupType" />
-              <span *ngIf="foundShaIndex == -1 && searchSha.length > 0" style="color: #e22f22; margin-left: 10px;">KO</span>
+              Chiffré(s) des bulletins présents dans l'urne
+              <!-- <p-sortIcon field="checkupType" /> -->
+              <span *ngIf="foundShaIndex == -1 && searchSha.length > 0"
+                style="color: #e22f22; margin-left: 10px;">KO</span>
               <span *ngIf="foundShaIndex == 0" style="color: #28a745;  margin-left: 10px;">OK</span>
             </th>
           </tr>

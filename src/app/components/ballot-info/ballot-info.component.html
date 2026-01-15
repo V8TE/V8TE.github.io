@@ -21,8 +21,9 @@
           <input type="text" [(ngModel)]="searchSha" (keyup.enter)="searchForSha()" (input)="searchForSha()"
             placeholder="" class="search-input w-full dark-blue" />
           <!-- <img src="assets/search.svg" class="input-icon" alt="search" /> -->
-          <span *ngIf="foundShaIndex == -1 && searchSha.length > 0" style="color: #e22f22; margin-left: 10px;">KO</span>
-          <span *ngIf="foundShaIndex == 0" style="color: #28a745;  margin-left: 10px;">OK</span>
+          <span class="bold input-icon" *ngIf="foundShaIndex == -1 && searchSha.length > 0"
+            style="color: #e22f22; margin-left: 10px;">KO</span>
+          <span class="bol input-icon" *ngIf="foundShaIndex == 0" style="color: #28a745;  margin-left: 10px;">OK</span>
         </div>
       </div>
     </div>

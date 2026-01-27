@@ -23,7 +23,7 @@
           <!-- <img src="assets/search.svg" class="input-icon" alt="search" /> -->
           <span class="bold input-icon" *ngIf="foundShaIndex == -1 && searchSha.length > 0"
             style="color: #e22f22; margin-left: 10px;">KO</span>
-          <span class="bold input-icon" *ngIf="foundShaIndex == 0" style="color: #28a745;  margin-left: 10px;">OK</span>
+          <span class="bold input-icon" *ngIf="foundShaIndex >= 0" style="color: #28a745;  margin-left: 10px;">OK</span>
         </div>
       </div>
     </div>

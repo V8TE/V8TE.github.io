@@ -56,8 +56,6 @@ export class BallotInfoComponent implements OnInit {
     const index = this.votesSha.findIndex(item => 
       item.vote.toString().toLowerCase() === this.searchSha.trim().toLowerCase()
     );
-
-    console.log(index);
     
     if (index !== -1) {
       this.foundShaIndex = index;

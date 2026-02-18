@@ -1,87 +1,19 @@
 @if (pollId.length > 0) {
 <div [ngClass]="isMobile ? 'toolbar toolbar-mob' : 'toolbar'" role="banner">
   <div class="toolbar-content">
-    <img src="assets/ballot-shield-icon.svg" id="head-icon" />
+    <img width="330px" class="block center-margin" src="assets/ballot-shield-icon.svg" id="head-icon" />
     <h1 class="light-blue text-center">
       TRANSPARENCE DE L'URNE
     </h1>
-    <p class="light-blue text-center" style="opacity: 0.6;">
-      Cette page vous permet de vérifier les informations de votre scrutin, le nombre d’électeurs et les votes présents
-      dans l’urne, sans révéler l’identité de qui a voté quoi.
-    </p>
-    <vc-poll-status [title]="election.name" [status]="isDatePassed(endDate) ? 'CLOSED' : 'OPEN'"></vc-poll-status>
-    <vc-poll-info [startDate]="startDateFormatted" [endDate]="endDateFormatted" [startHour]="startHour"
-      [endHour]="endHour"></vc-poll-info>
-    <!-- <vc-voters-info [totalVoters]="votersLength" [voters]="votesLenght"></vc-voters-info> -->
-    <vc-college-info [title]="electionTitle" [subjects]="listNames" [totalVoters]="votersLength" [voters]="votesLenght"
-      [pollName]="election.name"></vc-college-info>
-    <vc-ballot-info [votesSha]="votesSha" [tallySha]="tallySha" [txTallyId]="txTallyId"></vc-ballot-info>
-    <!-- 
 
-    <vc-poll-planned-list [title]="election.name" [subjects]="listNames"
-      [displayedAnswers]="answers"></vc-poll-planned-list>
-    <div style="margin: auto; width: fit-content;">
-      <p [ngClass]="isMobile ? 'buttons-description buttons-description-mob' : 'buttons-description'">
-        {{'DESCRIPTION.FIRST-BUTTON' | translate}}
-      </p>
-      <p [ngClass]="isMobile ? 'buttons-description buttons-description-mob' : 'buttons-description'">
-        {{'DESCRIPTION.SECOND-BUTTON' | translate}}
-      </p>
-      <button class="downlad-file" (click)="downloadPoll()">
-        <img src="assets/download.svg" style="margin-right: 5px; margin-top: -2px" /> {{'BUTTONS.DOWNLOAD' | translate}}
-      </button>
-    </div>
-    <div id="file-change" (click)="fileInput.click()" style="margin: auto; width: fit-content;">
-      <button class="downlad-file"><img src="assets/upload.svg"
-          style="margin-right: 5px; margin-top: -2px" />{{'BUTTONS.UPLOAD' | translate}}</button>
-      <input style="display: none" type="file" accept=".txt" (change)="onFileChanged($event)" #fileInput>
-    </div>
-    @if (pollValid) {
-    <div class="valid-display">
-      <img src="assets/dot-green.svg">
-      <p><span class="filename">{{pollFilename}}:</span> {{pollFileHash}}</p>
-    </div>
-    }
-    <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span
-        [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{electionSha}}
-        -&nbsp;</span><a href="https://sepolia.etherscan.io/tx/{{txPollId}}" target="_blank"
-        [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
-    <h1 class="category title-category">{{'TITLES.VOTERS' | translate}}</h1>
-    <p class="category">{{votersLength}} {{'DESCRIPTION.VOTERS' | translate}}</p>
-    @if (votersValid) {
-    <div class="valid-display">
-      <img src="assets/dot-green.svg">
-      <p><span class="filename">{{votersFilename}}:</span> {{votersFileHash}}</p>
-    </div>
-    }
-    <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span
-        [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{voterSha}} -&nbsp;</span><a
-        href="https://sepolia.etherscan.io/tx/{{txVotersId}}" target="_blank"
-        [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
-    <ul [ngClass]="isMobile ? 'list list-mob' : 'list'">
-      @for (v of voters; track v) {
-      <li><span>{{ v }}</span></li>
-      }
-    </ul>
-    <h1 class="category title-category">{{'TITLES.TALLY' | translate}}</h1>
-    <p class="category">{{votesLenght}} {{'DESCRIPTION.VOTES' | translate}}</p>
-    @if (tallyValid) {
-    <div class="valid-display">
-      <img src="assets/dot-green.svg">
-      <p><span class="filename">{{tallyFilename}}:</span> {{tallyFileHash}}</p>
-    </div>
-    }
-    <p [ngClass]="isMobile ? 'proof proof-mob' : 'proof'"><span
-        [ngClass]="isMobile ? 'proof-mobile' : ''">{{'DESCRIPTION.PROOF' | translate}}: 0x{{tallySha}} -&nbsp;</span><a
-        href="https://sepolia.etherscan.io/tx/{{txTallyId}}" target="_blank"
-        [ngClass]="isMobile ? 'link link-mobile' : 'link'">{{'BLOCKCHAIN.VERIFY' | translate}}</a></p>
-    <ul [ngClass]="isMobile ? 'list list-mob' : 'list'">
-      @for (v of votesSha; track v) {
-      <li>
-        <span class="vote-item">{{v}}</span>
-      </li>
-      }
-    </ul> -->
+    <!-- <vc-poll-status [title]="election.name" [status]="isDatePassed(endDate) ? 'CLOSED' : 'OPEN'"></vc-poll-status>
+    <vc-poll-info [startDate]="startDateFormatted" [endDate]="endDateFormatted" [startHour]="startHour"
+      [endHour]="endHour"></vc-poll-info> -->
+    <!-- <vc-voters-info [totalVoters]="votersLength" [voters]="votesLenght"></vc-voters-info> -->
+    <vc-ballot-info [votesSha]="votesSha" [tallySha]="tallySha" [txTallyId]="txTallyId"></vc-ballot-info>
+    <vc-college-info [title]="electionTitle" [subjects]="listNames" [totalVoters]="votersLength" [voters]="votesLenght"
+      [pollName]="election.name" [status]="isDatePassed(endDate) ? 'CLOSED' : 'OPEN'"></vc-college-info>
+
   </div>
 </div>
 }

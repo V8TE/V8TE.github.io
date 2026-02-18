@@ -1,39 +1,41 @@
 <div
   [ngClass]="isMobile ? 'form-holder form-holder-mob custom-accordion-container light-border' : 'form-holder custom-accordion-container light-border'">
   <div class="date custom-accordion-item w-full">
-    <div class="w-full">
+    <div class="w-full flex-row content-between mb-10">
       <h1 class="light-blue no-margin text-lg mb-10"><img src="assets/list-icon.svg" width="21px"
           style="margin-right: 5px;" />{{pollName}}
       </h1>
-      <!-- <i class="pi pi-chevron-down custom-arrow pointer" [class.rotated]="isPanelExpanded"></i> -->
+      <div class="status flex-row gap-10 align-center">
+        <img *ngIf="status == 'OPEN'" src="assets/ongoing_poll_icon.svg" width="25px" />
+        <img *ngIf="status != 'OPEN'" src="assets/completed-poll-icon.svg" width="25px" />
+        <div>
+          <p class="no-margin dark-grey mb-5">Statut du scrutin</p>
+          <p class="no-margin dark-blue bold">{{displayedStatus}}</p>
+        </div>
+      </div>
     </div>
 
-
-    <p class="dark-blue text-sm no-margin mb-20" *ngIf="isPanelExpanded">
-      Cette section présente le nombre total d’électeurs et leur statut (a voté / n’a pas voté), sans relier les
-      électeurs aux bulletins de vote.
-    </p>
     <div *ngIf="isPanelExpanded">
       <div class="election mb-10">
         <div class="election-header">
-          <h2 class="auto-margin dark-blue w-fit text-center">{{title}}</h2>
+          <h2 class="auto-margin dark-blue w-fit text-center text-md">{{title}}</h2>
         </div>
         <div class="election-info" [ngClass]="isMobile ? 'grid-col-2' : 'grid-col-4'">
           <div class="mt-10 mb-10 flex-col content-between">
-            <p class="text-center dark-blue bold no-margin">NOMBRE D'ÉLECTEURS</p>
-            <h3 class="text-center light-blue bold text-lg center-margin">{{totalVoters}}</h3>
+            <p class="text-center dark-blue bold no-margin text-xs">NOMBRE D'ÉLECTEURS</p>
+            <h3 class="text-center light-blue bold text-xs center-margin">{{totalVoters}}</h3>
           </div>
           <div class="mt-10 mb-10 flex-col content-between">
-            <p class="text-center dark-blue bold no-margin">NOMBRE DE VOTANTS</p>
-            <h3 class="text-center light-blue bold text-lg center-margin">{{voters}}</h3>
+            <p class="text-center dark-blue bold no-margin text-xs">NOMBRE DE VOTANTS</p>
+            <h3 class="text-center light-blue bold text-xs center-margin">{{voters}}</h3>
           </div>
           <div class="mt-10 mb-10 flex-col content-between">
-            <p class="text-center dark-blue bold no-margin">BULLETINS PRÉSENTS DANS L'URNE</p>
-            <h3 class="text-center light-blue bold text-lg center-margin">{{voters}}</h3>
+            <p class="text-center dark-blue bold no-margin text-xs">BULLETINS PRÉSENTS DANS L'URNE</p>
+            <h3 class="text-center light-blue bold text-xs center-margin">{{voters}}</h3>
           </div>
           <div class="mt-10 mb-10 flex-col content-between">
-            <p class="text-center dark-blue bold no-margin">TAUX DE PARTICIPATION</p>
-            <h3 class="text-center light-blue bold text-lg center-margin">{{(+voters / +totalVoters * 100) |
+            <p class="text-center dark-blue bold no-margin text-xs">TAUX DE PARTICIPATION</p>
+            <h3 class="text-center light-blue bold text-xs center-margin">{{(+voters / +totalVoters * 100) |
               number:'1.0-1'}}%</h3>
           </div>
         </div>
@@ -55,8 +57,5 @@
           d'électeurs ayant voté</p>
       </div>
     </div>
-    <p class="dark-grey text-xs"> Le lien entre
-      l’identité de l’électeur
-      et le contenu de son vote n’est jamais accessible, afin de garantir le secret du vote.</p>
   </div>
 </div>

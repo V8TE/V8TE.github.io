@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="card">
-      <p-table [value]="votesSha" [tableStyle]="{'min-width': '100%'}" [rows]="5" [paginator]="true"
+      <p-table [value]="votesSha" [tableStyle]="{'min-width': '100%'}" [rows]="5" 
         [stripedRows]="true" [first]="first">
         <ng-template pTemplate="header">
           <tr>
@@ -40,9 +40,13 @@
         </ng-template>
         <ng-template pTemplate="body" let-vote let-rowIndex="rowIndex">
           <tr
-            [ngClass]="{'row-odd': rowIndex % 2 === 0, 'row-even': rowIndex % 2 !== 0, 'found-row': isFoundRow(rowIndex)}">
+            class="found-row" *ngIf="foundShaIndex >= 0">
             <td style="word-break: break-all;" class="text-xs light-blue">{{vote.vote}}</td>
           </tr>
+          <!-- <tr
+            [ngClass]="{'row-odd': rowIndex % 2 === 0, 'row-even': rowIndex % 2 !== 0, 'found-row': isFoundRow(rowIndex)}">
+            <td style="word-break: break-all;" class="text-xs light-blue">{{vote.vote}}</td>
+          </tr> -->
         </ng-template>
       </p-table>
     </div>

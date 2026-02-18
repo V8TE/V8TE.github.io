@@ -13,6 +13,8 @@ export class CollegeInfoComponent implements OnInit {
   @Input() subjects!: any[]
   @Input() totalVoters!: String
   @Input() voters!: String
+  @Input() status!: String
+  displayedStatus!: String
   isMobile: boolean = false
   isPanelExpanded: boolean = true;
 
@@ -21,6 +23,11 @@ export class CollegeInfoComponent implements OnInit {
   }
 
   ngOnChanges(): void {
+    if (this.status === 'OPEN') {
+      this.displayedStatus = "EN COURS...";
+    } else {
+      this.displayedStatus = "TERMINÉ";
+    }
   }
 
   checkIfMobile() {

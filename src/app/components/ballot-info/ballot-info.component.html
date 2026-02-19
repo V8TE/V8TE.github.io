@@ -1,20 +1,20 @@
 <div [ngClass]="isMobile ? 'form-holder form-holder-mob' : 'form-holder'">
   <div class="date">
     <h1 class="light-blue no-margin text-lg mb-10"><img src="assets/ballot-mail-icon.svg" width="23px"
-        style="margin-right: 5px;" />Bulletins présents dans l'urne</h1>
+        style="margin-right: 5px;" />{{votes}} Bulletins présents dans l'urne</h1>
 
-    <p class="dark-blue text-sm no-margin mb-20">Cette section présente les bulletins déposés dans l’urne, sans
-      indication
-      de
-      l’identité.</p>
+    <p class="dark-blue text-sm no-margin mb-20">
+      Cette section vous permet de vérifier la présence de votre bulletin dans l'urne, sans indication d'identité.
+    </p>
 
     <div class="search-container flex-row">
 
       <div class="w-full">
         <div class="text-left">
 
-          <p class="dark-blue no-margin mb-5">Confirmer la présence de votre bulletin en copiant votre chiffré
-            ci-dessous.</p>
+          <p class="dark-blue no-margin mb-5">
+            Copiez votre chiffré ci-dessous.
+          </p>
         </div>
 
         <div class="input-wrapper">
@@ -25,34 +25,28 @@
             style="color: #e22f22; margin-left: 10px;">KO</span>
           <span class="bold input-icon" *ngIf="foundShaIndex >= 0" style="color: #28a745;  margin-left: 10px;">OK</span>
         </div>
+        <p class="green bold" *ngIf="foundShaIndex >= 0">Ce chiffré correspond à un bulletin présent dans l'urne.</p>
+        <p class="red bold" *ngIf="foundShaIndex == -1 && searchSha.length > 0">Ce chiffré ne correspond à aucun bulletin présent dans l'urne.</p>
       </div>
     </div>
-    <div class="card">
+    <!-- <div class="card">
       <p-table [value]="votesSha" [tableStyle]="{'min-width': '100%'}" [rows]="5" 
         [stripedRows]="true" [first]="first">
         <ng-template pTemplate="header">
           <tr>
-            <th pSortableColumn="vote" class="header dark-blue bold">
-              Chiffrés des bulletins présents dans l'urne
-              <!-- <p-sortIcon field="checkupType" /> -->
+            <th pSortableColumn="vote" class="header dark-blue text-normal">
+              Chaque vote correspond à un bulletin chiffré et signé
+              <p-sortIcon field="checkupType" />
             </th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-vote let-rowIndex="rowIndex">
           <tr
-            class="found-row" *ngIf="foundShaIndex >= 0">
-            <td style="word-break: break-all;" class="text-xs light-blue">{{vote.vote}}</td>
-          </tr>
-          <!-- <tr
             [ngClass]="{'row-odd': rowIndex % 2 === 0, 'row-even': rowIndex % 2 !== 0, 'found-row': isFoundRow(rowIndex)}">
             <td style="word-break: break-all;" class="text-xs light-blue">{{vote.vote}}</td>
-          </tr> -->
+          </tr>
         </ng-template>
       </p-table>
-    </div>
-
-
-    <p class="dark-grey text-xs">Chaque vote correspond à un bulletin chiffré et signé, <span class="bold">stocké dans
-        l'urne.</span></p>
+    </div> -->
   </div>
 </div>

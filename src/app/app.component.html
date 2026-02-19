@@ -10,7 +10,7 @@
     <vc-poll-info [startDate]="startDateFormatted" [endDate]="endDateFormatted" [startHour]="startHour"
       [endHour]="endHour"></vc-poll-info> -->
     <!-- <vc-voters-info [totalVoters]="votersLength" [voters]="votesLenght"></vc-voters-info> -->
-    <vc-ballot-info [votesSha]="votesSha" [tallySha]="tallySha" [txTallyId]="txTallyId"></vc-ballot-info>
+    <vc-ballot-info [votesSha]="votesSha" [tallySha]="tallySha" [txTallyId]="txTallyId" [votes]="votesLenght"></vc-ballot-info>
     <vc-college-info [title]="electionTitle" [subjects]="listNames" [totalVoters]="votersLength" [voters]="votesLenght"
       [pollName]="election.name" [status]="isDatePassed(endDate) ? 'CLOSED' : 'OPEN'"></vc-college-info>
 

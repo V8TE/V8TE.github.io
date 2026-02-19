@@ -17,7 +17,7 @@ export class BallotInfoComponent implements OnInit {
   @Input() tallySha: String | undefined;
   @Input() txTallyId: String | undefined;
   @Input() totalVoters!: String
-  @Input() voters!: String
+  @Input() votes!: String
   isMobile: boolean = false
   searchSha: string = ''
   selectedCollege: string = 'college1'

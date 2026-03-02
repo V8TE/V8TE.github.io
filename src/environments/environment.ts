@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   settings: {
     api: 'http://localhost:8080/',
+    apiNew: 'http://localhost:8080/',
     livews: 'ws://localhost:8080/ws/elections/',
   },
 };

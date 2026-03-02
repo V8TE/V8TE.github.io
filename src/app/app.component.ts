@@ -55,6 +55,7 @@ export class AppComponent {
   endDateFormatted!: string;
   endHour!: string;
   electionTitle: any;
+  newVersion = false;
 
   constructor(
     private router: Router,
@@ -75,12 +76,12 @@ getDatas() {
 }
 
 async fetchVotes(id: string) {
-  await this.apiService.getVotes(id).subscribe((res: any) => {
+  await this.apiService.getVotes(id, this.newVersion).subscribe((res: any) => {
   });
 }
 
 async fetchLists(id: string) {
-  await this.apiService.getLists(id, this.round).subscribe((res: any) => {
+  await this.apiService.getLists(id, this.round, this.newVersion).subscribe((res: any) => {
     const answers: Array<any> = res.displayedQuestions.splice(1, res.displayedQuestions.length - 2)
     this.electionTitle = res.title
     let tmpArr: any[] = []
@@ -103,7 +104,7 @@ async fetchLists(id: string) {
 }
 
 async fetchDatas(id: string) {
-  await this.apiService.getDatas(id, this.round).subscribe((res: any) => {
+  await this.apiService.getDatas(id, this.round, this.newVersion).subscribe((res: any) => {
     this.txPollId = res.txs.poll
     this.txVotersId = res.txs.voters
     this.votes = res.tally
@@ -113,7 +114,7 @@ async fetchDatas(id: string) {
 }
 
 async fetchVoters(id: string) {
-  await this.apiService.getVoters(id, this.round).subscribe((res: any) => {
+  await this.apiService.getVoters(id, this.round, this.newVersion).subscribe((res: any) => {
     this.voterSha = this.sha(res)
     this.voters = res
     this.votersLength = this.voters.length.toString()
@@ -121,7 +122,7 @@ async fetchVoters(id: string) {
 }
 
 async fetchElection(id: string) {
-  this.apiService.getElection(id, this.round).subscribe((res: any) => {    
+  this.apiService.getElection(id, this.round, this.newVersion).subscribe((res: any) => {
     
     this.startDate = res.start;
     this.endDate = res.end;
@@ -150,7 +151,7 @@ async fetchElection(id: string) {
 }
 
 async fetchTally(id: string) {
-  this.apiService.getTally(id, this.round).subscribe((res: any) => {
+  this.apiService.getTally(id, this.round, this.newVersion).subscribe((res: any) => {
     
     this.votesSha = res.map((x: any) => ({ vote: this.sha(x) }));
     this.votesLenght = this.votesSha.length.toString();
@@ -230,7 +231,11 @@ async fetchTally(id: string) {
 
   ngOnInit() {
     this.pollId = this.router.url.split('/')[1];
-    this.round = parseInt(this.router.url.split('/')[2])
+    this.round = parseInt(this.router.url.split('/')[2]);
+    this.route.queryParams.subscribe((params) => {
+      if (params.newVersion != null) {
+        this.newVersion = params.newVersion;
+      }});
     if (this.pollId.length > 0)
      this.getDatas()
     this.checkIfMobile()

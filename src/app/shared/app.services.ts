@@ -21,39 +21,45 @@ export class ApiService {
   ) {}
 
 
-  public getVotes(id: string) {
+  public getVotes(id: string, newVersion: boolean) {
+    const baseUrl = newVersion ? environment.settings.apiNew : environment.settings.api;
     return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/result`
+        `${baseUrl}/elections/${id}/result`
       );
   }
 
-  public getLists(id: string, round:number) {
+  public getLists(id: string, round:number, newVersion: boolean) {
+    const baseUrl = newVersion ? environment.settings.apiNew : environment.settings.api;
     return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/lists?round=${round}`
+        `${baseUrl}/elections/${id}/lists?round=${round}`
       );
   }
 
-  public getVoters(id: string, round:number) {
+  public getVoters(id: string, round:number, newVersion: boolean) {
+    const baseUrl = newVersion ? environment.settings.apiNew : environment.settings.api;
     return this.httpClient.get<string>(
-        `${environment.settings.api}/elections/${id}/votersanon?round=${round}`
+        `${baseUrl}/elections/${id}/votersanon?round=${round}`
       );
   }
 
-  public getTally(id: string, round:number) {
+  public getTally(id: string, round:number, newVersion: boolean) {
+    const baseUrl = newVersion ? environment.settings.apiNew : environment.settings.api;
     return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/tally?round=${round}`
+        `${baseUrl}/elections/${id}/tally?round=${round}`
       );
   }
 
-  public getElection(id: string, round:number) {
+  public getElection(id: string, round:number, newVersion: boolean) {
+    const baseUrl = newVersion ? environment.settings.apiNew : environment.settings.api;
     return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/params?round=${round}`
+        `${baseUrl}/elections/${id}/params?round=${round}`
       );
   }
 
-  public getDatas(id: string, round:number) {
+  public getDatas(id: string, round:number, newVersion: boolean) {
+    const baseUrl = newVersion ? environment.settings.apiNew : environment.settings.api;
     return this.httpClient.get(
-        `${environment.settings.api}/elections/${id}/datas?round=${round}`
+        `${baseUrl}/elections/${id}/datas?round=${round}`
       );
   }
 }

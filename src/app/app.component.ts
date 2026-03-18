@@ -234,7 +234,7 @@ async fetchTally(id: string) {
     this.round = parseInt(this.router.url.split('/')[2]);
     this.route.queryParams.subscribe((params) => {
       if (params.newVersion != null) {
-        this.newVersion = params.newVersion;
+        this.newVersion = true;
       }});
     if (this.pollId.length > 0)
      this.getDatas()

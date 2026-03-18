@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="10.027" height="12.5" viewBox="0 0 10.027 12.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2b2d67;
+      }
+
+      .cls-2 {
+        fill: #1990ff;
+      }
+    </style>
+  </defs>
+  <g id="Groupe_163997" data-name="Groupe 163997" transform="translate(-259.387 -740.25)">
+    <path id="Ligne_355" data-name="Ligne 355" class="cls-1" d="M.5,12h-1V0h1Z" transform="translate(262.869 740.25)"/>
+    <path id="Polygone_7" data-name="Polygone 7" class="cls-2" d="M2.321,0,4.643,5.964H0Z" transform="translate(269.414 741.982) rotate(90)"/>
+    <ellipse id="Ellipse_9526" data-name="Ellipse 9526" class="cls-1" cx="4" cy="0.5" rx="4" ry="0.5" transform="translate(259.387 751.75)"/>
+  </g>
+</svg>
